@@ -1,5 +1,6 @@
 package test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -95,19 +96,31 @@ class DatabaseTest {
 		assertEquals("firstTestName | firstTestAFM", secondTokenTaxpayer.getName() + " | " +secondTokenTaxpayer.getAFM());
 	}
 
+	
 	@Test
+	@Order(6)
 	void testGetTaxpayersNameAfmValuesPairList() {
+		System.out.println("test 6");
 		String[] testArray = new String[3];
 		Taxpayer firstTaxpayer = new Taxpayer("firstTestName", "firstTestAFM", "single", "3168");
 		Taxpayer secondTaxpayer = new Taxpayer("secondTestName", "testAFM", "single", "3168");
 		Taxpayer thirdTaxpayer = new Taxpayer("thirdTestName", "thirdTestAFM", "single", "3168");
 		
+		String[] expectedArray = {"firstTestName | firstTestAFM", "secondTestName | testAFM","thirdTestName | thirdTestAFM"};
 		Database.addTaxpayerToList(firstTaxpayer);
 		Database.addTaxpayerToList(secondTaxpayer);
 		Database.addTaxpayerToList(thirdTaxpayer);
-		fail("Not yet implemented");
+		
+		for (int i = 0; i < testArray.length; i++) {
+			testArray[i] = Database.getTaxpayerFromArrayList(i).getName() +" | "+Database.getTaxpayerFromArrayList(i).getAFM();
+		}
+		assertArrayEquals(expectedArray, testArray);
+		Database.removeTaxpayerFromArrayList(0);
+		Database.removeTaxpayerFromArrayList(0);
+		Database.removeTaxpayerFromArrayList(0);
 	}
 
+	
 	@Test
 	void testUpdateTaxpayerInputFile() {
 		fail("Not yet implemented");
