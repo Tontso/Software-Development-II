@@ -1,12 +1,11 @@
 package dataManagePackage;
-import dataManagePackage.Receipt.*;
-import inputManagePackage.*;
-import outputManagePackage.*;
-
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.List;
+
+import inputManagePackage.InputSystem;
+import outputManagePackage.OutputSystem;
 
 public class Database {
 	private static String taxpayersInfoFilesPath;

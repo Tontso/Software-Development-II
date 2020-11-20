@@ -1,8 +1,9 @@
 package dataManagePackage;
-import dataManagePackage.Receipt.Receipt;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
+
+import dataManagePackage.Receipt.Receipt;
+
 
 public class Taxpayer {
 	private String name;
