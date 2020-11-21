@@ -29,111 +29,40 @@ public class Taxpayer {
 	}
 	
 	private void setBasicTaxBasedOnFamilyStatus(){
-		switch(familyStatus.toLowerCase()){
-			case("married filing jointly"):
-				basicTax = calculateTaxForMarriedFilingJointlyTaxpayerFamilyStatus(income);
-				break;
-			case("married filing separately"):
-				basicTax = calculateTaxForMarriedFilingSeparately(income);
-				break;
-			case("single"):
-				basicTax = calculateTaxForSingles(income);
-				break;
-			case("head of household"):
-				basicTax = calculateTaxForHeadOfHousehold(income);
-				break;
-		}
+		
+		TaxStats taxStats = new TaxStats (familyStatus.toLowerCase());
+		basicTax = calculateTax(income, taxStats);
+		
 		
 		totalTax = basicTax;
 	}
 	
-	public double calculateTaxForMarriedFilingJointlyTaxpayerFamilyStatus(double totalIncome){
-		double tax;
+	public double calculateTax(double totalIncome, TaxStats taxStats) {
 		
-		if (totalIncome < 36080){
-			tax = (5.35/100) * totalIncome;
+		double tax;
+		int[]smallerThan = taxStats.getSmallerThan();
+		Double[][] stats = taxStats.getCalculateTaxStatsMap().get(taxStats.getFamilyStatus());
+		
+		if (totalIncome < smallerThan[0]){
+			tax = (stats[0][1]/100) * totalIncome;
 		}
-		else if (totalIncome < 90000){
-			tax = 1930.28 + ((7.05/100) * (totalIncome-36080));
+		else if (totalIncome < smallerThan[1]){
+			tax = stats[1][0] + ((stats[1][1]/100) * (totalIncome-smallerThan[0]));
 		}
-		else if (totalIncome < 143350){
-			tax = 5731.64 + ((7.05/100) * (totalIncome-90000));
+		else if (totalIncome < smallerThan[2]){
+			tax = stats[2][0] + ((stats[2][1]/100) * (totalIncome-smallerThan[1]));
 		}
-		else if (totalIncome < 254240){
-			tax = 9492.82 + ((7.85/100) * (totalIncome-143350));
+		else if (totalIncome < smallerThan[3]){
+			tax = stats[3][0] + ((stats[3][1]/100) * (totalIncome-smallerThan[2]));
 		}
 		else{
-			tax = 18197.69 + ((9.85/100) * (totalIncome-254240));
+			tax = stats[4][0] + ((stats[4][1]/100) * (totalIncome-smallerThan[3]));
 		}
 		
 		return tax;
 	}
 	
-	public double calculateTaxForMarriedFilingSeparately(double totalIncome){
-		double tax;
-		
-		if (totalIncome < 18040){
-			tax = (5.35/100) * totalIncome;
-		}
-		else if (totalIncome < 71680){
-			tax = 965.14 + ((7.05/100) * (totalIncome-18040));
-		}
-		else if (totalIncome < 90000){
-			tax = 4746.76 + ((7.85/100) * (totalIncome-71680));
-		}
-		else if (totalIncome < 127120){
-			tax = 6184.88 + ((7.85/100) * (totalIncome-90000));
-		}
-		else{
-			tax = 9098.80 + ((9.85/100) * (totalIncome-127120));
-		}
-		
-		return tax;
-	}
 	
-	public double calculateTaxForSingles(double totalIncome){
-		double tax;
-		
-		if (totalIncome < 24680){
-			tax = (5.35/100) * totalIncome;
-		}
-		else if (totalIncome < 81080){
-			tax = 1320.38 + ((7.05/100) * (totalIncome-24680));
-		}
-		else if (totalIncome < 90000){
-			tax = 5296.58 + ((7.85/100) * (totalIncome-81080));
-		}
-		else if (totalIncome < 152540){
-			tax = 5996.80 + ((7.85/100) * (totalIncome-90000));
-		}
-		else{
-			tax = 10906.19 + ((9.85/100) * (totalIncome-152540));
-		}
-		
-		return tax;
-	}
-	
-	public double calculateTaxForHeadOfHousehold(double totalIncome){
-		double tax;
-		
-		if (totalIncome < 30390){
-			tax = (5.35/100) * totalIncome;
-		}
-		else if (totalIncome < 90000){
-			tax = 1625.87 + ((7.05/100) * (totalIncome-30390));
-		}
-		else if (totalIncome < 122110){
-			tax = 5828.38 + ((7.05/100) * (totalIncome-90000));
-		}
-		else if (totalIncome < 203390){
-			tax = 8092.13 + ((7.85/100) * (totalIncome-122110));
-		}
-		else{
-			tax = 14472.61 + ((9.85/100) * (totalIncome-203390));
-		}
-		
-		return tax;
-	}
 	
 	public String toString(){
 		return "Name: "+name
