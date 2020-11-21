@@ -1,13 +1,12 @@
 package outputManagePackage;
-import dataManagePackage.*;
-import dataManagePackage.Receipt.Receipt;
-
 import java.awt.Dialog.ModalExclusionType;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
+
 import javax.swing.JOptionPane;
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
@@ -17,6 +16,10 @@ import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
+
+import dataManagePackage.Database;
+import dataManagePackage.Taxpayer;
+import dataManagePackage.Receipt.Receipt;
 
 public class OutputSystem {
 	
@@ -148,11 +151,11 @@ public class OutputSystem {
 		}
 		outputStream.println("Total Tax: "+taxpayer.getTotalTax());
 		outputStream.println("Total Receipts Amount: "+taxpayer.getTotalReceiptsAmount());
-		outputStream.println("Entertainment: "+taxpayer.getEntertainmentReceiptsTotalAmount());
-		outputStream.println("Basic: "+taxpayer.getBasicReceiptsTotalAmount());
-		outputStream.println("Travel: "+taxpayer.getTravelReceiptsTotalAmount());
-		outputStream.println("Health: "+taxpayer.getHealthReceiptsTotalAmount());
-		outputStream.println("Other: "+taxpayer.getOtherReceiptsTotalAmount());
+		outputStream.println("Entertainment: "+taxpayer.getKindOfReceiptsTotalAmount("Entertainment"));
+		outputStream.println("Basic: "+taxpayer.getKindOfReceiptsTotalAmount("Basic"));
+		outputStream.println("Travel: "+taxpayer.getKindOfReceiptsTotalAmount("Travel"));
+		outputStream.println("Health: "+taxpayer.getKindOfReceiptsTotalAmount("Health"));
+		outputStream.println("Other: "+taxpayer.getKindOfReceiptsTotalAmount("Other"));
 		
 		outputStream.close();
 		
@@ -183,11 +186,11 @@ public class OutputSystem {
 		}
 		outputStream.println("<TotalTax> "+taxpayer.getTotalTax()+" </TotalTax>");
 		outputStream.println("<Receipts> "+taxpayer.getTotalReceiptsAmount()+" </Receipts>");
-		outputStream.println("<Entertainment> "+taxpayer.getEntertainmentReceiptsTotalAmount()+" </Entertainment>");
-		outputStream.println("<Basic> "+taxpayer.getBasicReceiptsTotalAmount()+" </Basic>");
-		outputStream.println("<Travel> "+taxpayer.getTravelReceiptsTotalAmount()+" </Travel>");
-		outputStream.println("<Health> "+taxpayer.getHealthReceiptsTotalAmount()+" </Health>");
-		outputStream.println("<Other> "+taxpayer.getOtherReceiptsTotalAmount()+" </Other>");
+		outputStream.println("<Entertainment> "+taxpayer.getKindOfReceiptsTotalAmount("Entertainment")+" </Entertainment>");
+		outputStream.println("<Basic> "+taxpayer.getKindOfReceiptsTotalAmount("Basic")+" </Basic>");
+		outputStream.println("<Travel> "+taxpayer.getKindOfReceiptsTotalAmount("Travel")+" </Travel>");
+		outputStream.println("<Health> "+taxpayer.getKindOfReceiptsTotalAmount("Health")+" </Health>");
+		outputStream.println("<Other> "+taxpayer.getKindOfReceiptsTotalAmount("Other")+" </Other>");
 		
 		outputStream.close();
 		
@@ -198,11 +201,11 @@ public class OutputSystem {
 		receiptPieChartDataset = new DefaultPieDataset();
 		Taxpayer taxpayer = Database.getTaxpayerFromArrayList(taxpayerIndex);
 		
-		receiptPieChartDataset.setValue("Basic", taxpayer.getBasicReceiptsTotalAmount());
-		receiptPieChartDataset.setValue("Entertainment", taxpayer.getEntertainmentReceiptsTotalAmount());
-		receiptPieChartDataset.setValue("Travel", taxpayer.getTravelReceiptsTotalAmount());
-		receiptPieChartDataset.setValue("Health", taxpayer.getHealthReceiptsTotalAmount());
-		receiptPieChartDataset.setValue("Other", taxpayer.getOtherReceiptsTotalAmount());
+		receiptPieChartDataset.setValue("Basic", taxpayer.getKindOfReceiptsTotalAmount("Basic"));
+		receiptPieChartDataset.setValue("Entertainment", taxpayer.getKindOfReceiptsTotalAmount("Entertainment"));
+		receiptPieChartDataset.setValue("Travel", taxpayer.getKindOfReceiptsTotalAmount("Travel"));
+		receiptPieChartDataset.setValue("Health", taxpayer.getKindOfReceiptsTotalAmount("Health"));
+		receiptPieChartDataset.setValue("Other", taxpayer.getKindOfReceiptsTotalAmount("Other"));
 		
 		receiptPieJFreeChart = ChartFactory.createPieChart("Receipt Pie Chart", receiptPieChartDataset);
 		piePlot = (PiePlot)receiptPieJFreeChart.getPlot();

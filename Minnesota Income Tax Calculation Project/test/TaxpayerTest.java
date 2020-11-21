@@ -49,6 +49,7 @@ class TaxpayerTest {
 		// totalIncome >= 127120
 		totalIncome = 128000;
 		tax = taxpayer.calculateTax(totalIncome, taxStats);
+		System.out.println(tax);
 		assertEquals(9185.48, tax);
 	}
 	
@@ -163,7 +164,7 @@ class TaxpayerTest {
 		taxpayer.addReceiptToList(firstTestBasicReceipt);
 		taxpayer.addReceiptToList(secondTestBasicReceipt);
 		taxpayer.addReceiptToList(thirdTestBasicReceipt);
-		double totalAmount = taxpayer.getBasicReceiptsTotalAmount();
+		double totalAmount = taxpayer.getKindOfReceiptsTotalAmount("Basic");
 		assertEquals(61000, totalAmount);
 	}
 
@@ -176,7 +177,7 @@ class TaxpayerTest {
 		taxpayer.addReceiptToList(firstTestBasicReceipt);
 		taxpayer.addReceiptToList(secondTestBasicReceipt);
 		taxpayer.addReceiptToList(thirdTestBasicReceipt);
-		double totalAmount = taxpayer.getEntertainmentReceiptsTotalAmount();
+		double totalAmount = taxpayer.getKindOfReceiptsTotalAmount("Entertainment");
 		assertEquals(64000, totalAmount);
 	}
 
@@ -189,7 +190,7 @@ class TaxpayerTest {
 		taxpayer.addReceiptToList(firstTestBasicReceipt);
 		taxpayer.addReceiptToList(secondTestBasicReceipt);
 		taxpayer.addReceiptToList(thirdTestBasicReceipt);
-		double totalAmount = taxpayer.getTravelReceiptsTotalAmount();
+		double totalAmount = taxpayer.getKindOfReceiptsTotalAmount("Travel");
 		assertEquals(67000, totalAmount);
 	}
 
@@ -202,7 +203,7 @@ class TaxpayerTest {
 		taxpayer.addReceiptToList(firstTestBasicReceipt);
 		taxpayer.addReceiptToList(secondTestBasicReceipt);
 		taxpayer.addReceiptToList(thirdTestBasicReceipt);
-		double totalAmount = taxpayer.getHealthReceiptsTotalAmount();
+		double totalAmount = taxpayer.getKindOfReceiptsTotalAmount("Health");
 		assertEquals(70000, totalAmount);
 	}
 
@@ -215,7 +216,7 @@ class TaxpayerTest {
 		taxpayer.addReceiptToList(firstTestBasicReceipt);
 		taxpayer.addReceiptToList(secondTestBasicReceipt);
 		taxpayer.addReceiptToList(thirdTestBasicReceipt);
-		double totalAmount = taxpayer.getOtherReceiptsTotalAmount();
+		double totalAmount = taxpayer.getKindOfReceiptsTotalAmount("Other");
 		assertEquals(73000, totalAmount);
 	}
 

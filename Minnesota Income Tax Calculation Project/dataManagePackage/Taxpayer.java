@@ -88,72 +88,22 @@ public class Taxpayer {
 		int c = 0;
 		for (Receipt receipt : receipts){
 			receiptsList[c++] = receipt.getId() + " | " + receipt.getDate() + " | " + receipt.getAmount();
-		}
-		
+		}	
 		return receiptsList;
 	}
 	
-	public double getBasicReceiptsTotalAmount(){
-		double basicReceiptsTotalAmount = 0;
+	
+	public double getKindOfReceiptsTotalAmount(String kindOfReceipt){
+		double kindOfReceiptsTotalAmount = 0;
 		
 		for (Receipt receipt : receipts){
-			if (receipt.getKind().equals("Basic")){
-				basicReceiptsTotalAmount += receipt.getAmount();
+			if (receipt.getKind().equals(kindOfReceipt)){
+				kindOfReceiptsTotalAmount += receipt.getAmount();
 			}
 		}
-		
-		return (new BigDecimal(basicReceiptsTotalAmount).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+		return (new BigDecimal(kindOfReceiptsTotalAmount).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
 	}
 	
-	public double getEntertainmentReceiptsTotalAmount(){
-		double entertainmentReceiptsTotalAmount = 0;
-		
-		for (Receipt receipt : receipts){
-			if (receipt.getKind().equals("Entertainment")){
-				entertainmentReceiptsTotalAmount += receipt.getAmount();
-			}
-		}
-		
-		return (new BigDecimal(entertainmentReceiptsTotalAmount).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
-	}
-	
-	public double getTravelReceiptsTotalAmount(){
-		double travelReceiptsTotalAmount = 0;
-		
-		for (Receipt receipt : receipts){
-			if (receipt.getKind().equals("Travel")){
-				travelReceiptsTotalAmount += receipt.getAmount();
-			}
-		}
-		
-		return (new BigDecimal(travelReceiptsTotalAmount).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
-	}
-	
-	public double getHealthReceiptsTotalAmount(){
-		double healthReceiptsTotalAmount = 0;
-		
-		for (Receipt receipt : receipts){
-			if (receipt.getKind().equals("Health")){
-				healthReceiptsTotalAmount += receipt.getAmount();
-			}
-		}
-		
-		return (new BigDecimal(healthReceiptsTotalAmount).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
-	}
-	
-	
-	
-	public double getOtherReceiptsTotalAmount(){
-		double otherReceiptsTotalAmount = 0;
-		
-		for (Receipt receipt : receipts){
-			if (receipt.getKind().equals("Other")){
-				otherReceiptsTotalAmount += receipt.getAmount();
-			}
-		}
-		
-		return (new BigDecimal(otherReceiptsTotalAmount).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
-	}
 	
 	public double getTotalReceiptsAmount(){
 		double totalReceiptsAmount = 0;

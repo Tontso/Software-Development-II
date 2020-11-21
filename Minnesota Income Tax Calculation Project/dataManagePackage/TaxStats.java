@@ -43,7 +43,7 @@ public class TaxStats {
 				{965.14, 7.05},
 				{4746.76, 7.85},
 				{6184.88, 7.85},
-				{9098.80, 985.0}});
+				{9098.80, 9.85}});
 			break;
 			
 		case("single"):
@@ -61,7 +61,7 @@ public class TaxStats {
 			
 		case("head of household"):
 			smallerThan[0] = 30390;
-			smallerThan[1] = 30390;
+			smallerThan[1] = 90000;
 			smallerThan[2] = 122110;
 			smallerThan[3] = 203390;
 			calculateTaxStatsMap.put("head of household", new Double[][]{
