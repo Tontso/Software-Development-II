@@ -8,7 +8,7 @@ public class TaxStats {
 	String familyStatus;
 
 	private Map<String, Double[][]> calculateTaxStatsMap = new HashMap<>();
-	private int[] smallerThan = new int[4];
+	private int[] incomeLimits = new int[4];
 	
 	
 	public TaxStats (String familyStatus) {
@@ -21,10 +21,10 @@ public class TaxStats {
 		
 		switch(familyStatus.toLowerCase()){
 		case("married filing jointly"):
-			smallerThan[0] = 36080;
-			smallerThan[1] = 90000;
-			smallerThan[2] = 143350;
-			smallerThan[3] = 254240;
+			incomeLimits[0] = 36080;
+			incomeLimits[1] = 90000;
+			incomeLimits[2] = 143350;
+			incomeLimits[3] = 254240;
 			calculateTaxStatsMap.put("married filing jointly", new Double[][]{
 				{0.0, 5.35},
 				{1930.28, 7.05},
@@ -34,10 +34,10 @@ public class TaxStats {
 			break;
 			
 		case("married filing separately"):
-			smallerThan[0] = 18040;
-			smallerThan[1] = 71680;
-			smallerThan[2] = 90000;
-			smallerThan[3] = 127120;
+			incomeLimits[0] = 18040;
+			incomeLimits[1] = 71680;
+			incomeLimits[2] = 90000;
+			incomeLimits[3] = 127120;
 			calculateTaxStatsMap.put("married filing separately", new Double[][]{
 				{0.0, 5.35},
 				{965.14, 7.05},
@@ -47,10 +47,10 @@ public class TaxStats {
 			break;
 			
 		case("single"):
-			smallerThan[0] = 24680;
-			smallerThan[1] = 81080;
-			smallerThan[2] = 90000;
-			smallerThan[3] = 152540;
+			incomeLimits[0] = 24680;
+			incomeLimits[1] = 81080;
+			incomeLimits[2] = 90000;
+			incomeLimits[3] = 152540;
 			calculateTaxStatsMap.put("single", new Double[][]{
 				{0.0, 5.35},
 				{1320.38, 7.05},
@@ -60,10 +60,10 @@ public class TaxStats {
 			break;
 			
 		case("head of household"):
-			smallerThan[0] = 30390;
-			smallerThan[1] = 90000;
-			smallerThan[2] = 122110;
-			smallerThan[3] = 203390;
+			incomeLimits[0] = 30390;
+			incomeLimits[1] = 90000;
+			incomeLimits[2] = 122110;
+			incomeLimits[3] = 203390;
 			calculateTaxStatsMap.put("head of household", new Double[][]{
 				{0.0, 5.35},
 				{1625.87, 7.05},
@@ -81,14 +81,10 @@ public class TaxStats {
 	}
 
 
-	public int[] getSmallerThan() {
-		return smallerThan;
+	public int[] getIncomeLimits() {
+		return incomeLimits;
 	}
 
 
-	public String getFamilyStatus() {
-		return familyStatus;
-	}
-	
 	
 }

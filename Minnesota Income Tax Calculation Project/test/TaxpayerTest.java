@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import dataManagePackage.TaxStats;
 import dataManagePackage.Taxpayer;
 import dataManagePackage.Receipt.BasicReceipt;
 import dataManagePackage.Receipt.EntertainmentReceipt;
@@ -24,31 +23,31 @@ class TaxpayerTest {
 	@Order(1)
 	void testCalculateTaxForMarriedFilingSeparately() {
 		
-		TaxStats taxStats = new TaxStats("married filing separately");
+		taxpayer = new Taxpayer("TestName", "testAFM", "married filing separately", "13567");
 		int totalIncome;
 		double tax;
 		// totalIncome < 18040
 		totalIncome = 17876;
-		tax = taxpayer.calculateTax(totalIncome, taxStats);
+		tax = taxpayer.calculateTax(totalIncome);
 		assertEquals(956.366, tax);
 		// 18040 <= totalIncome < 71680
 		totalIncome = 68000;
-		tax = taxpayer.calculateTax(totalIncome, taxStats);
+		tax = taxpayer.calculateTax(totalIncome);
 		assertEquals(4487.32, tax);
 		
 		// 71680 <= totalIncome < 90000
 		totalIncome = 81456;
-		tax = taxpayer.calculateTax(totalIncome, taxStats);
+		tax = taxpayer.calculateTax(totalIncome);
 		assertEquals(5514.176, tax);
 		
 		// 90000 <= totalIncome < 127120
 		totalIncome = 123678;
-		tax = taxpayer.calculateTax(totalIncome, taxStats);
+		tax = taxpayer.calculateTax(totalIncome);
 		assertEquals(8828.603, tax);
 		
 		// totalIncome >= 127120
 		totalIncome = 128000;
-		tax = taxpayer.calculateTax(totalIncome, taxStats);
+		tax = taxpayer.calculateTax(totalIncome);
 		System.out.println(tax);
 		assertEquals(9185.48, tax);
 	}
@@ -57,32 +56,32 @@ class TaxpayerTest {
 	@Order(2)
 	void testCalculateTaxForMarriedFilingJointlyTaxpayerFamilyStatus() {
 		
-		TaxStats taxStats = new TaxStats("married filing jointly");
+		taxpayer = new Taxpayer("TestName", "testAFM", "married filing jointly", "13567");
 		int totalIncome;
 		double tax;
 		// totalIncome < 36080
 		totalIncome = 28000;
-		tax = taxpayer.calculateTax(totalIncome, taxStats);
+		tax = taxpayer.calculateTax(totalIncome);
 		assertEquals(1498, tax);
 		
 		//36080 <= totalIncome < 90000
 		totalIncome = 80000;
-		tax = taxpayer.calculateTax(totalIncome, taxStats);
+		tax = taxpayer.calculateTax(totalIncome);
 		assertEquals(5026.639999999999, tax);
 		
 		// 90000 <= totalIncome < 143350
 		totalIncome = 140000;
-		tax = taxpayer.calculateTax(totalIncome, taxStats);
+		tax = taxpayer.calculateTax(totalIncome);
 		assertEquals(9256.64, tax);
 		
 		// 143350 <= totalIncome < 254240
 		totalIncome = 238000;
-		tax = taxpayer.calculateTax(totalIncome, taxStats);
+		tax = taxpayer.calculateTax(totalIncome);
 		assertEquals(16922.845, tax);
 		
 		// totalIncome >= 254240
 		totalIncome = 280000;
-		tax = taxpayer.calculateTax(totalIncome, taxStats);
+		tax = taxpayer.calculateTax(totalIncome);
 		assertEquals(20735.05, tax);
 	}
 
@@ -90,33 +89,34 @@ class TaxpayerTest {
 	@Order(3)
 	void testCalculateTaxForSingles() {
 		//MUST BT CHANGED
-		TaxStats taxStats = new TaxStats("single");
+		taxpayer = new Taxpayer("TestName", "testAFM", "single", "13567");
+
 		int totalIncome;
 		double tax;
 		
 		// totalIncome < 24680
 		totalIncome = 17890;
-		tax = taxpayer.calculateTax(totalIncome, taxStats);
+		tax = taxpayer.calculateTax(totalIncome);
 		assertEquals(957.115, tax);
 		
 		// 24680 <= totalIncome < 81080
 		totalIncome = 79865;
-		tax = taxpayer.calculateTax(totalIncome, taxStats);
+		tax = taxpayer.calculateTax(totalIncome);
 		assertEquals(5210.9225, tax);
 		
 		// 81080 <= totalIncome < 90000
 		totalIncome = 85678;
-		tax = taxpayer.calculateTax(totalIncome, taxStats);
+		tax = taxpayer.calculateTax(totalIncome);
 		assertEquals(5657.523, tax);
 		
 		// 90000 <= totalIncome < 152540
 		totalIncome = 148756;
-		tax = taxpayer.calculateTax(totalIncome, taxStats);
+		tax = taxpayer.calculateTax(totalIncome);
 		assertEquals(10609.146, tax);
 		
 		// totalIncome >= 152540
 		totalIncome = 178906;
-		tax = taxpayer.calculateTax(totalIncome, taxStats);
+		tax = taxpayer.calculateTax(totalIncome);
 		assertEquals(13503.241, tax);
 	}
 
@@ -124,33 +124,33 @@ class TaxpayerTest {
 	@Order(4)
 	void testCalculateTaxForHeadOfHousehold() {
 		
-		TaxStats taxStats = new TaxStats("head of household");
+		taxpayer = new Taxpayer("TestName", "testAFM", "head of household", "13567");
 		int totalIncome;
 		double tax;
 		
 		// totalIncome < 30390
 		totalIncome = 27890;
-		tax = taxpayer.calculateTax(totalIncome, taxStats);
+		tax = taxpayer.calculateTax(totalIncome);
 		assertEquals(1492.115, tax);
 		
 		// 30390 <= totalIncome < 90000
 		totalIncome = 79865;
-		tax = taxpayer.calculateTax(totalIncome, taxStats);
+		tax = taxpayer.calculateTax(totalIncome);
 		assertEquals(5113.8575, tax);
 		
 		// 90000 <= totalIncome < 122110
 		totalIncome = 105678;
-		tax = taxpayer.calculateTax(totalIncome, taxStats);
+		tax = taxpayer.calculateTax(totalIncome);
 		assertEquals(6933.679, tax);
 		
 		// 122110 <= totalIncome < 203390
 		totalIncome = 148756;
-		tax = taxpayer.calculateTax(totalIncome, taxStats);
+		tax = taxpayer.calculateTax(totalIncome);
 		assertEquals(10183.841, tax);
 		
 		// totalIncome >= 203390
 		totalIncome = 278906;
-		tax = taxpayer.calculateTax(totalIncome, taxStats);
+		tax = taxpayer.calculateTax(totalIncome);
 		assertEquals(21910.936, tax);
 	}
 

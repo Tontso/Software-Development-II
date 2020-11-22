@@ -8,7 +8,7 @@ import dataManagePackage.Receipt.Receipt;
 public class Taxpayer {
 	private String name;
 	private String afm;
-	private String familyStatus;
+	private FamilyStatus familyStatus;
 	private double income;
 	private double basicTax;
 	private double taxIncrease;
@@ -19,7 +19,7 @@ public class Taxpayer {
 	public Taxpayer(String name, String afm, String familyStatus, String income){
 		this.name = name;
 		this.afm = afm;
-		this.familyStatus = familyStatus;
+		this.familyStatus = FamilyStatus.getFamilyStatus(familyStatus);
 		this.income = Double.parseDouble(income);
 		setBasicTaxBasedOnFamilyStatus();
 		taxIncrease = 0;
@@ -30,33 +30,32 @@ public class Taxpayer {
 	
 	private void setBasicTaxBasedOnFamilyStatus(){
 		
-		TaxStats taxStats = new TaxStats (familyStatus.toLowerCase());
-		basicTax = calculateTax(income, taxStats);
+		basicTax = calculateTax(income);
 		
 		
 		totalTax = basicTax;
 	}
 	
-	public double calculateTax(double totalIncome, TaxStats taxStats) {
+	public double calculateTax(double totalIncome) {
 		
 		double tax;
-		int[]smallerThan = taxStats.getSmallerThan();
-		Double[][] stats = taxStats.getCalculateTaxStatsMap().get(taxStats.getFamilyStatus());
+		int[]incomeLimits = familyStatus.getTaxStats().	getIncomeLimits();
+		Double[][] taxRates = familyStatus.getTaxStats().getCalculateTaxStatsMap().get(familyStatus.getFamilyStatus());
 		
-		if (totalIncome < smallerThan[0]){
-			tax = (stats[0][1]/100) * totalIncome;
+		if (totalIncome < incomeLimits[0]){
+			tax = (taxRates[0][1]/100) * totalIncome;
 		}
-		else if (totalIncome < smallerThan[1]){
-			tax = stats[1][0] + ((stats[1][1]/100) * (totalIncome-smallerThan[0]));
+		else if (totalIncome < incomeLimits[1]){
+			tax = taxRates[1][0] + ((taxRates[1][1]/100) * (totalIncome-incomeLimits[0]));
 		}
-		else if (totalIncome < smallerThan[2]){
-			tax = stats[2][0] + ((stats[2][1]/100) * (totalIncome-smallerThan[1]));
+		else if (totalIncome < incomeLimits[2]){
+			tax = taxRates[2][0] + ((taxRates[2][1]/100) * (totalIncome-incomeLimits[1]));
 		}
-		else if (totalIncome < smallerThan[3]){
-			tax = stats[3][0] + ((stats[3][1]/100) * (totalIncome-smallerThan[2]));
+		else if (totalIncome < incomeLimits[3]){
+			tax = taxRates[3][0] + ((taxRates[3][1]/100) * (totalIncome-incomeLimits[2]));
 		}
 		else{
-			tax = stats[4][0] + ((stats[4][1]/100) * (totalIncome-smallerThan[3]));
+			tax = taxRates[4][0] + ((taxRates[4][1]/100) * (totalIncome-incomeLimits[3]));
 		}
 		
 		return tax;
@@ -123,7 +122,7 @@ public class Taxpayer {
 		return afm;
 	}
 	
-	public String getFamilyStatus(){
+	public FamilyStatus getFamilyStatus(){
 		return familyStatus;
 	}
 	
