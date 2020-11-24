@@ -1,22 +1,23 @@
 package gui;
-import dataManagePackage.*;
-import dataManagePackage.Receipt.*;
-
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import java.awt.Font;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import java.awt.Color;
-import javax.swing.SwingConstants;
-import java.awt.event.ActionListener;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import dataManagePackage.Database;
+import dataManagePackage.Receipt.Receipt;
 
 public class InsertNewReceiptJDialog extends JDialog {
 
@@ -186,7 +187,7 @@ public class InsertNewReceiptJDialog extends JDialog {
 						&& !amountTextField.getText().equals("") && !companyTextField.getText().equals("") && !countryTextField.getText().equals("")
 						&& !cityTextField.getText().equals("") && !streetTextField.getText().equals("") && !numberTextField.getText().equals("")){
 
-					Receipt newReceipt = ReceiptFactory.createNewReceipt(kindComboBox.getSelectedItem().toString(), receiptIdTextField.getText(),
+					Receipt newReceipt = new Receipt(kindComboBox.getSelectedItem().toString(), receiptIdTextField.getText(),
 							dateTextField.getText(), amountTextField.getText(), companyTextField.getText(),
 							countryTextField.getText(), cityTextField.getText(), streetTextField.getText(), numberTextField.getText());
 					Database.getTaxpayerFromArrayList(taxpayerID).addReceiptToList(newReceipt);

@@ -19,7 +19,7 @@ public class Taxpayer {
 	public Taxpayer(String name, String afm, String familyStatus, String income){
 		this.name = name;
 		this.afm = afm;
-		this.familyStatus = FamilyStatus.getFamilyStatus(familyStatus);
+		this.familyStatus = FamilyStatus.getFamilyStatus(familyStatus.toLowerCase());
 		this.income = Double.parseDouble(income);
 		setBasicTaxBasedOnFamilyStatus();
 		taxIncrease = 0;

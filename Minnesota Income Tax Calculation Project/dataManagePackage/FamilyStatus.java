@@ -25,6 +25,9 @@ public class FamilyStatus {
 				return stat;
 			}
 		}
+		//Does not exist this kind of family status
+		System.out.println("Does not exist this kind of family status");
+		System.exit(0);
 		return null;
 	}
 

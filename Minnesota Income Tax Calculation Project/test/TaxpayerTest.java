@@ -8,11 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 import dataManagePackage.Taxpayer;
-import dataManagePackage.Receipt.BasicReceipt;
-import dataManagePackage.Receipt.EntertainmentReceipt;
-import dataManagePackage.Receipt.HealthReceipt;
-import dataManagePackage.Receipt.OtherReceipt;
-import dataManagePackage.Receipt.TravelReceipt;
+import dataManagePackage.Receipt.Receipt;
 
 @TestMethodOrder(OrderAnnotation.class)
 class TaxpayerTest {
@@ -158,9 +154,9 @@ class TaxpayerTest {
 	@Test
 	@Order(5)
 	void testGetBasicReceiptsTotalAmount() {
-		BasicReceipt firstTestBasicReceipt = new BasicReceipt("testId", "15/11/2020", "20500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
-		BasicReceipt secondTestBasicReceipt = new BasicReceipt("testId", "15/11/2020", "19500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
-		BasicReceipt thirdTestBasicReceipt = new BasicReceipt("testId", "15/11/2020", "21000", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt firstTestBasicReceipt = new Receipt("Basic","testId", "15/11/2020", "20500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt secondTestBasicReceipt = new Receipt("Basic","testId", "15/11/2020", "19500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt thirdTestBasicReceipt = new Receipt("Basic","testId", "15/11/2020", "21000", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
 		taxpayer.addReceiptToList(firstTestBasicReceipt);
 		taxpayer.addReceiptToList(secondTestBasicReceipt);
 		taxpayer.addReceiptToList(thirdTestBasicReceipt);
@@ -171,9 +167,9 @@ class TaxpayerTest {
 	@Test
 	@Order(6)
 	void testGetEntertainmentReceiptsTotalAmount() {
-		EntertainmentReceipt firstTestBasicReceipt = new EntertainmentReceipt("testId", "15/11/2020", "21500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
-		EntertainmentReceipt secondTestBasicReceipt = new EntertainmentReceipt("testId", "15/11/2020", "20500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
-		EntertainmentReceipt thirdTestBasicReceipt = new EntertainmentReceipt("testId", "15/11/2020", "22000", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt firstTestBasicReceipt = new Receipt("Entertainment","testId", "15/11/2020", "21500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt secondTestBasicReceipt = new Receipt("Entertainment","testId", "15/11/2020", "20500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt thirdTestBasicReceipt = new Receipt("Entertainment","testId", "15/11/2020", "22000", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
 		taxpayer.addReceiptToList(firstTestBasicReceipt);
 		taxpayer.addReceiptToList(secondTestBasicReceipt);
 		taxpayer.addReceiptToList(thirdTestBasicReceipt);
@@ -184,9 +180,9 @@ class TaxpayerTest {
 	@Test
 	@Order(7)
 	void testGetTravelReceiptsTotalAmount() {
-		TravelReceipt firstTestBasicReceipt = new TravelReceipt("testId", "15/11/2020", "22500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
-		TravelReceipt secondTestBasicReceipt = new TravelReceipt("testId", "15/11/2020", "21500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
-		TravelReceipt thirdTestBasicReceipt = new TravelReceipt("testId", "15/11/2020", "23000", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt firstTestBasicReceipt = new Receipt("Travel","testId", "15/11/2020", "22500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt secondTestBasicReceipt = new Receipt("Travel","testId", "15/11/2020", "21500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt thirdTestBasicReceipt = new Receipt("Travel","testId", "15/11/2020", "23000", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
 		taxpayer.addReceiptToList(firstTestBasicReceipt);
 		taxpayer.addReceiptToList(secondTestBasicReceipt);
 		taxpayer.addReceiptToList(thirdTestBasicReceipt);
@@ -197,9 +193,9 @@ class TaxpayerTest {
 	@Test
 	@Order(8)
 	void testGetHealthReceiptsTotalAmount() {
-		HealthReceipt firstTestBasicReceipt = new HealthReceipt("testId", "15/11/2020", "23500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
-		HealthReceipt secondTestBasicReceipt = new HealthReceipt("testId", "15/11/2020", "22500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
-		HealthReceipt thirdTestBasicReceipt = new HealthReceipt("testId", "15/11/2020", "24000", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt firstTestBasicReceipt = new Receipt("Health","testId", "15/11/2020", "23500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt secondTestBasicReceipt = new Receipt("Health","testId", "15/11/2020", "22500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt thirdTestBasicReceipt = new Receipt("Health","testId", "15/11/2020", "24000", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
 		taxpayer.addReceiptToList(firstTestBasicReceipt);
 		taxpayer.addReceiptToList(secondTestBasicReceipt);
 		taxpayer.addReceiptToList(thirdTestBasicReceipt);
@@ -210,9 +206,9 @@ class TaxpayerTest {
 	@Test
 	@Order(9)
 	void testGetOtherReceiptsTotalAmount() {
-		OtherReceipt firstTestBasicReceipt = new OtherReceipt("testId", "15/11/2020", "24500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
-		OtherReceipt secondTestBasicReceipt = new OtherReceipt("testId", "15/11/2020", "23500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
-		OtherReceipt thirdTestBasicReceipt = new OtherReceipt("testId", "15/11/2020", "25000", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt firstTestBasicReceipt = new Receipt("Other","testId", "15/11/2020", "24500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt secondTestBasicReceipt = new Receipt("Other","testId", "15/11/2020", "23500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt thirdTestBasicReceipt = new Receipt("Other","testId", "15/11/2020", "25000", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
 		taxpayer.addReceiptToList(firstTestBasicReceipt);
 		taxpayer.addReceiptToList(secondTestBasicReceipt);
 		taxpayer.addReceiptToList(thirdTestBasicReceipt);
@@ -223,11 +219,11 @@ class TaxpayerTest {
 	@Test
 	@Order(10)
 	void testGetTotalReceiptsAmount() {
-		BasicReceipt firstTestBasicReceipt = new BasicReceipt("testId", "15/11/2020", "20500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
-		EntertainmentReceipt secondTestBasicReceipt = new EntertainmentReceipt("testId", "15/11/2020", "20500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
-		TravelReceipt thirdTestBasicReceipt = new TravelReceipt("testId", "15/11/2020", "23000", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
-		HealthReceipt fourthTestBasicReceipt = new HealthReceipt("testId", "15/11/2020", "24000", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
-		OtherReceipt fifthTestBasicReceipt = new OtherReceipt("testId", "15/11/2020", "25000", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt firstTestBasicReceipt = new Receipt("Basic","testId", "15/11/2020", "20500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt secondTestBasicReceipt = new Receipt("Entertainment","testId", "15/11/2020", "20500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt thirdTestBasicReceipt = new Receipt("Travel","testId", "15/11/2020", "23000", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt fourthTestBasicReceipt = new Receipt("Health","testId", "15/11/2020", "24000", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt fifthTestBasicReceipt = new Receipt("Other","testId", "15/11/2020", "25000", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
 		taxpayer.addReceiptToList(firstTestBasicReceipt);
 		taxpayer.addReceiptToList(secondTestBasicReceipt);
 		taxpayer.addReceiptToList(thirdTestBasicReceipt);
@@ -242,7 +238,7 @@ class TaxpayerTest {
 	@Order(11)
 	void testAddReceiptToList() {
 		assertEquals(0, taxpayer.getReceiptsArrayList().size());
-		BasicReceipt firstTestBasicReceipt = new BasicReceipt("testId", "15/11/2020", "20500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt firstTestBasicReceipt = new Receipt("Basic","testId", "15/11/2020", "20500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
 		taxpayer.addReceiptToList(firstTestBasicReceipt);
 		assertEquals(1, taxpayer.getReceiptsArrayList().size());
 		
@@ -252,8 +248,8 @@ class TaxpayerTest {
 	@Order(12)
 	void testRemoveReceiptFromList() {
 		assertEquals(0, taxpayer.getReceiptsArrayList().size());
-		BasicReceipt firstTestBasicReceipt = new BasicReceipt("testId", "15/11/2020", "20500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
-		EntertainmentReceipt secondTestBasicReceipt = new EntertainmentReceipt("testId", "15/11/2020", "20500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt firstTestBasicReceipt = new Receipt("Basic","testId", "15/11/2020", "20500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt secondTestBasicReceipt = new Receipt("Entertainment","testId", "15/11/2020", "20500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
 		taxpayer.addReceiptToList(firstTestBasicReceipt);
 		taxpayer.addReceiptToList(secondTestBasicReceipt);
 		assertEquals(2, taxpayer.getReceiptsArrayList().size());
@@ -266,11 +262,11 @@ class TaxpayerTest {
 	@Test
 	@Order(13)
 	void testCalculateTaxpayerTaxIncreaseOrDecreaseBasedOnReceipts() {
-		BasicReceipt firstTestBasicReceipt = new BasicReceipt("testId", "15/11/2020", "20500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
-		EntertainmentReceipt secondTestBasicReceipt = new EntertainmentReceipt("testId", "15/11/2020", "20500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
-		TravelReceipt thirdTestBasicReceipt = new TravelReceipt("testId", "15/11/2020", "23000", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
-		HealthReceipt fourthTestBasicReceipt = new HealthReceipt("testId", "15/11/2020", "24000", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
-		OtherReceipt fifthTestBasicReceipt = new OtherReceipt("testId", "15/11/2020", "25000", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt firstTestBasicReceipt = new Receipt("Basic","testId", "15/11/2020", "20500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt secondTestBasicReceipt = new Receipt("Entertainment","testId", "15/11/2020", "20500", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt thirdTestBasicReceipt = new Receipt("Travel","testId", "15/11/2020", "23000", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt fourthTestBasicReceipt = new Receipt("Health","testId", "15/11/2020", "24000", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
+		Receipt fifthTestBasicReceipt = new Receipt("Other","testId", "15/11/2020", "25000", "testCompanyName", "testCountryname", "testCityName", "testStreetName", "31");
 		taxpayer.addReceiptToList(firstTestBasicReceipt);
 		taxpayer.addReceiptToList(secondTestBasicReceipt);
 		taxpayer.addReceiptToList(thirdTestBasicReceipt);
