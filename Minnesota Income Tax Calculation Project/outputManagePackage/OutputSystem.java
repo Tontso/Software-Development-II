@@ -26,6 +26,7 @@ public class OutputSystem {
 	private static DefaultPieDataset receiptPieChartDataset;
 	private static JFreeChart receiptPieJFreeChart;
 	private static PiePlot piePlot;
+	private static ChartFrame receiptPieChartFrame;
 	
 	public static DefaultPieDataset getReceiptPieChartDataset() {
 		return receiptPieChartDataset;
@@ -43,7 +44,6 @@ public class OutputSystem {
 		return receiptPieChartFrame;
 	}
 
-	private static ChartFrame receiptPieChartFrame;
 
 	public static void saveUpdatedTaxpayerTxtInputFile(String filePath, int taxpayerIndex){
 		PrintWriter outputStream = null;
