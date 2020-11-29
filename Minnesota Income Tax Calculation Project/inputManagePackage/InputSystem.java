@@ -12,9 +12,7 @@ public class InputSystem {
 	
 	public static void addTaxpayersDataFromFilesIntoDatabase(String afmInfoFilesFolderPath, List<String> taxpayersAfmInfoFiles){
 		for (String afmInfoFile : taxpayersAfmInfoFiles)
-		{
-			System.out.println("to afmInfoFile einai:"+afmInfoFile);
-			
+		{		
 			if (afmInfoFile.endsWith(".txt")){
 				loadTaxpayerDataFromTxtFileIntoDatabase(afmInfoFilesFolderPath, afmInfoFile);
 			}

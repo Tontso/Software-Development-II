@@ -66,7 +66,7 @@ public class Taxpayer {
 	public String toString(){
 		return "Name: "+name
 				+"\nAFM: "+afm
-				+"\nStatus: "+familyStatus
+				+"\nStatus: "+familyStatus.getFamilyStatus()
 				+"\nIncome: "+String.format("%.2f", income)
 				+"\nBasicTax: "+String.format("%.2f", basicTax)
 				+"\nTaxIncrease: "+String.format("%.2f", taxIncrease)

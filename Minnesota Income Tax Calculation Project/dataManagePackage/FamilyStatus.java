@@ -21,12 +21,12 @@ public class FamilyStatus {
 
 	public static FamilyStatus getFamilyStatus(String familyStatus) {
 		for (FamilyStatus stat : allStatus) {
-			if(familyStatus.equals(stat.getFamilyStatus())) {
+			if(familyStatus.toLowerCase().equals(stat.getFamilyStatus())) {
 				return stat;
 			}
 		}
 		//Does not exist this kind of family status
-		System.out.println("Does not exist this kind of family status");
+		System.out.println("Does not exist this kind of family status:"+familyStatus);
 		System.exit(0);
 		return null;
 	}
@@ -42,4 +42,10 @@ public class FamilyStatus {
 	}
 
 
+	public void setFamilyStatus(String familyStatus) {
+		this.familyStatus = familyStatus;
+	}
+
+
+	
 }

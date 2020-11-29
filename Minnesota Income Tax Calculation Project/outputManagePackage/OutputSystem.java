@@ -24,12 +24,17 @@ import dataManagePackage.Receipt.Receipt;
 public class OutputSystem {
 	
 	private static DefaultPieDataset receiptPieChartDataset;
+	private static DefaultCategoryDataset taxAnalysisBarChartDataset;
 	private static JFreeChart receiptPieJFreeChart;
 	private static PiePlot piePlot;
 	private static ChartFrame receiptPieChartFrame;
 	
 	public static DefaultPieDataset getReceiptPieChartDataset() {
 		return receiptPieChartDataset;
+	}
+	
+	public static DefaultCategoryDataset getDefaultCategoryDataset() {
+		return taxAnalysisBarChartDataset;
 	}
 
 	public static JFreeChart getReceiptPieJFreeChart() {
@@ -59,7 +64,7 @@ public class OutputSystem {
 		Taxpayer taxpayer = Database.getTaxpayerFromArrayList(taxpayerIndex);
 		outputStream.println("Name: "+taxpayer.getName());
 		outputStream.println("AFM: "+taxpayer.getAFM());
-		outputStream.println("Status: "+taxpayer.getFamilyStatus());
+		outputStream.println("Status: "+taxpayer.getFamilyStatus().getFamilyStatus());
 		outputStream.println("Income: "+taxpayer.getIncome());
 		
 		if (taxpayer.getReceiptsArrayList().size() > 0){
@@ -98,7 +103,7 @@ public class OutputSystem {
 		Taxpayer taxpayer = Database.getTaxpayerFromArrayList(taxpayerIndex);
 		outputStream.println("<Name> "+taxpayer.getName()+" </Name>");
 		outputStream.println("<AFM> "+taxpayer.getAFM()+" </AFM>");
-		outputStream.println("<Status> "+taxpayer.getFamilyStatus()+" </Status>");
+		outputStream.println("<Status> "+taxpayer.getFamilyStatus().getFamilyStatus()+" </Status>");
 		outputStream.println("<Income> "+taxpayer.getIncome()+" </Income>");
 		
 		if (taxpayer.getReceiptsArrayList().size() > 0){
@@ -221,7 +226,7 @@ public class OutputSystem {
 	}
 	
 	public static void createTaxpayerTaxAnalysisBarJFreeChart(int taxpayerIndex){
-		DefaultCategoryDataset taxAnalysisBarChartDataset = new DefaultCategoryDataset();
+		taxAnalysisBarChartDataset = new DefaultCategoryDataset();
 		Taxpayer taxpayer = Database.getTaxpayerFromArrayList(taxpayerIndex);
 		
 		String taxVariationType = taxpayer.getTaxInxrease()!=0? "Tax Increase" : "Tax Decrease";

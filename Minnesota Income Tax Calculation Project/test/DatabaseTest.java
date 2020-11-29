@@ -2,7 +2,6 @@ package test;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
@@ -16,11 +15,6 @@ import dataManagePackage.Taxpayer;
 class DatabaseTest {
 
 	
-
-	@Test
-	void testProccessTaxpayersDataFromFilesIntoDatabase() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	@Order(1)
@@ -121,9 +115,5 @@ class DatabaseTest {
 	}
 
 	
-	@Test
-	void testUpdateTaxpayerInputFile() {
-		fail("Not yet implemented");
-	}
 
 }
