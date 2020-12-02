@@ -17,22 +17,27 @@ import inputManagePackage.InputSystem;
 
 @TestMethodOrder(OrderAnnotation.class)
 class InputSystemTest {
+	 
+	Database database = Database.getDatabase();
 
 	@Test()
 	@Order(1)
 	void testAddTaxpayersDataFromFilesIntoDatabaseForTxt() {
+		
+		InputSystem inputSystem = InputSystem.getInputSystem();
+		
 		List<String> myTestList = new ArrayList<>();
 		myTestList.add("130456093_INFO.txt");
 		
-		InputSystem.addTaxpayersDataFromFilesIntoDatabase("test/testsInputFiles", myTestList);
+		InputSystem.getInputSystem().addTaxpayersDataFromFilesIntoDatabase("test/testsInputFiles", myTestList);
 		
 		Taxpayer expectedTaxpayer = new Taxpayer("Apostolos Zarras", "130456093", "Married Filing Jointly", "22570");
 		
 		//Check if load right the Taxpayer
-		assertEquals(expectedTaxpayer.getName(), Database.getTaxpayerFromArrayList(0).getName());
-		assertEquals(expectedTaxpayer.getAFM(), Database.getTaxpayerFromArrayList(0).getAFM());
-		assertEquals(expectedTaxpayer.getFamilyStatus(), Database.getTaxpayerFromArrayList(0).getFamilyStatus());
-		assertEquals(expectedTaxpayer.getIncome(), Database.getTaxpayerFromArrayList(0).getIncome());
+		assertEquals(expectedTaxpayer.getName(), database.getTaxpayerFromArrayList(0).getName());
+		assertEquals(expectedTaxpayer.getAFM(), database.getTaxpayerFromArrayList(0).getAFM());
+		assertEquals(expectedTaxpayer.getFamilyStatus(), database.getTaxpayerFromArrayList(0).getFamilyStatus());
+		assertEquals(expectedTaxpayer.getIncome(), database.getTaxpayerFromArrayList(0).getIncome());
 		
 		//Check if load right taxpayer's receips
 		Receipt testReceipt = new Receipt("Basic", "1", "25/2/2014", "2000", "Hand Made Clothes", "Greece", "Ioannina", "Kaloudi ", "10");
@@ -49,17 +54,17 @@ class InputSystemTest {
 		
 		for(int i=0; i<5; i++) {
 			
-			assertEquals(expectedTaxpayer.getReceiptsArrayList().get(i).getId(), Database.getTaxpayerFromArrayList(0).getReceiptsArrayList().get(i).getId());
+			assertEquals(expectedTaxpayer.getReceiptsArrayList().get(i).getId(), database.getTaxpayerFromArrayList(0).getReceiptsArrayList().get(i).getId());
 			
-			assertEquals(expectedTaxpayer.getReceiptsArrayList().get(i).getKind(), Database.getTaxpayerFromArrayList(0).getReceiptsArrayList().get(i).getKind());
+			assertEquals(expectedTaxpayer.getReceiptsArrayList().get(i).getKind(), database.getTaxpayerFromArrayList(0).getReceiptsArrayList().get(i).getKind());
 			
-			assertEquals(expectedTaxpayer.getReceiptsArrayList().get(i).getDate(), Database.getTaxpayerFromArrayList(0).getReceiptsArrayList().get(i).getDate());
+			assertEquals(expectedTaxpayer.getReceiptsArrayList().get(i).getDate(), database.getTaxpayerFromArrayList(0).getReceiptsArrayList().get(i).getDate());
 			
-			assertEquals(expectedTaxpayer.getReceiptsArrayList().get(i).getAmount(), Database.getTaxpayerFromArrayList(0).getReceiptsArrayList().get(i).getAmount());
+			assertEquals(expectedTaxpayer.getReceiptsArrayList().get(i).getAmount(), database.getTaxpayerFromArrayList(0).getReceiptsArrayList().get(i).getAmount());
 			
 		}
 	
-		Database.removeTaxpayerFromArrayList(0);
+		database.removeTaxpayerFromArrayList(0);
 			
 	}
 	
@@ -70,15 +75,15 @@ class InputSystemTest {
 		List<String> myTestList = new ArrayList<>();
 		myTestList.add("130456094_INFO.xml");
 		
-		InputSystem.addTaxpayersDataFromFilesIntoDatabase("test/testsInputFiles", myTestList);
+		InputSystem.getInputSystem().addTaxpayersDataFromFilesIntoDatabase("test/testsInputFiles", myTestList);
 		
 		Taxpayer expectedTaxpayer = new Taxpayer("Nikos Zisis", "130456094", "Single", "40000");
 		
 		//Check if load right the Taxpayer
-		assertEquals(expectedTaxpayer.getName(), Database.getTaxpayerFromArrayList(0).getName());
-		assertEquals(expectedTaxpayer.getAFM(), Database.getTaxpayerFromArrayList(0).getAFM());
-		assertEquals(expectedTaxpayer.getFamilyStatus(), Database.getTaxpayerFromArrayList(0).getFamilyStatus());
-		assertEquals(expectedTaxpayer.getIncome(), Database.getTaxpayerFromArrayList(0).getIncome());
+		assertEquals(expectedTaxpayer.getName(), database.getTaxpayerFromArrayList(0).getName());
+		assertEquals(expectedTaxpayer.getAFM(), database.getTaxpayerFromArrayList(0).getAFM());
+		assertEquals(expectedTaxpayer.getFamilyStatus(), database.getTaxpayerFromArrayList(0).getFamilyStatus());
+		assertEquals(expectedTaxpayer.getIncome(), database.getTaxpayerFromArrayList(0).getIncome());
 		
 		//Check if load right taxpayer's receips
 		Receipt testReceipt = new Receipt("Other", "1", "25/2/2014", "2000", "Omega Watches", "Greece", "Ioannina", "Kaloudi ", "4");
@@ -93,17 +98,17 @@ class InputSystemTest {
 		
 		for(int i=0; i<3; i++) {
 			
-			assertEquals(expectedTaxpayer.getReceiptsArrayList().get(i).getId(), Database.getTaxpayerFromArrayList(0).getReceiptsArrayList().get(i).getId());
+			assertEquals(expectedTaxpayer.getReceiptsArrayList().get(i).getId(), database.getTaxpayerFromArrayList(0).getReceiptsArrayList().get(i).getId());
 			
-			assertEquals(expectedTaxpayer.getReceiptsArrayList().get(i).getKind(), Database.getTaxpayerFromArrayList(0).getReceiptsArrayList().get(i).getKind());
+			assertEquals(expectedTaxpayer.getReceiptsArrayList().get(i).getKind(), database.getTaxpayerFromArrayList(0).getReceiptsArrayList().get(i).getKind());
 			
-			assertEquals(expectedTaxpayer.getReceiptsArrayList().get(i).getDate(), Database.getTaxpayerFromArrayList(0).getReceiptsArrayList().get(i).getDate());
+			assertEquals(expectedTaxpayer.getReceiptsArrayList().get(i).getDate(), database.getTaxpayerFromArrayList(0).getReceiptsArrayList().get(i).getDate());
 			
-			assertEquals(expectedTaxpayer.getReceiptsArrayList().get(i).getAmount(), Database.getTaxpayerFromArrayList(0).getReceiptsArrayList().get(i).getAmount());
+			assertEquals(expectedTaxpayer.getReceiptsArrayList().get(i).getAmount(), database.getTaxpayerFromArrayList(0).getReceiptsArrayList().get(i).getAmount());
 			
 		}
 	
-		Database.removeTaxpayerFromArrayList(0);
+		database.removeTaxpayerFromArrayList(0);
 			
 	}
 

@@ -1,21 +1,20 @@
 package gui;
-import dataManagePackage.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.AbstractListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import dataManagePackage.Database;
-import javax.swing.JScrollPane;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-
-import java.awt.Font;
-import java.awt.Color;
+import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
-import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import dataManagePackage.Database;
 
 public class TaxpayerReceiptsManagementJDialog extends JDialog {
 
@@ -82,7 +81,7 @@ public class TaxpayerReceiptsManagementJDialog extends JDialog {
 		showSelectedReceiptDetailsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (taxpayerReceiptsJList.getSelectedIndex()!=-1){
-					JOptionPane.showMessageDialog(null, Database.getTaxpayerFromArrayList(taxpayerID).getReceipt(taxpayerReceiptsJList.getSelectedIndex()).toString(), taxpayerReceiptsJList.getSelectedValue().toString(), JOptionPane.PLAIN_MESSAGE);
+					JOptionPane.showMessageDialog(null, Database.getDatabase().getTaxpayerFromArrayList(taxpayerID).getReceipt(taxpayerReceiptsJList.getSelectedIndex()).toString(), taxpayerReceiptsJList.getSelectedValue().toString(), JOptionPane.PLAIN_MESSAGE);
 				}else{
 					JOptionPane.showMessageDialog(null, "Δεν έχεις επιλέξει κάποια απόδειξη απο την λίστα.", "Σφάλμα", JOptionPane.WARNING_MESSAGE);
 				}
@@ -103,9 +102,9 @@ public class TaxpayerReceiptsManagementJDialog extends JDialog {
 				if (taxpayerReceiptsJList.getSelectedIndex()!=-1){
 					int dialogResult = JOptionPane.showConfirmDialog (null, "Διαγραφή επιλεγμένης απόδειξης("+taxpayerReceiptsJList.getSelectedValue().toString()+") ?", "Επιβεβαίωση διαγραφής", JOptionPane.YES_NO_OPTION);
 					if(dialogResult == JOptionPane.YES_OPTION){
-						Database.getTaxpayerFromArrayList(taxpayerID).removeReceiptFromList(taxpayerReceiptsJList.getSelectedIndex());
+						Database.getDatabase().getTaxpayerFromArrayList(taxpayerID).removeReceiptFromList(taxpayerReceiptsJList.getSelectedIndex());
 						
-						Database.updateTaxpayerInputFile(taxpayerID);
+						Database.getDatabase().updateTaxpayerInputFile(taxpayerID);
 						
 						fillTaxpayerReceiptsJList();
 					}
@@ -117,7 +116,7 @@ public class TaxpayerReceiptsManagementJDialog extends JDialog {
 	}
 	
 	public void fillTaxpayerReceiptsJList(){
-		String[] jlistValues = Database.getTaxpayerFromArrayList(taxpayerID).getReceiptsList();
+		String[] jlistValues = Database.getDatabase().getTaxpayerFromArrayList(taxpayerID).getReceiptsList();
 		
 		taxpayerReceiptsJList.setModel(new AbstractListModel() {
 			String[] values = jlistValues;

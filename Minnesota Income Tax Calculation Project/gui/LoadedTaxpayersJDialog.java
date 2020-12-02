@@ -1,23 +1,24 @@
 package gui;
-import dataManagePackage.Database;
-import outputManagePackage.OutputSystem;
-
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultListCellRenderer;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import dataManagePackage.Database;
+import outputManagePackage.OutputSystem;
 
 public class LoadedTaxpayersJDialog extends JDialog {
 
@@ -111,7 +112,7 @@ public class LoadedTaxpayersJDialog extends JDialog {
 		showSelectedTaxpayerInfoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (loadedTaxpayersJList.getSelectedIndex()!=-1){
-					JOptionPane.showMessageDialog(null, Database.getTaxpayerFromArrayList(loadedTaxpayersJList.getSelectedIndex()).toString(),  loadedTaxpayersJList.getSelectedValue().toString(), JOptionPane.PLAIN_MESSAGE);
+					JOptionPane.showMessageDialog(null, Database.getDatabase().getTaxpayerFromArrayList(loadedTaxpayersJList.getSelectedIndex()).toString(),  loadedTaxpayersJList.getSelectedValue().toString(), JOptionPane.PLAIN_MESSAGE);
 				}
 				else{
 					JOptionPane.showMessageDialog(null, "Δεν έχεις επιλέξει κάποιον φορολογούμενο απο την λίστα.", "Σφάλμα", JOptionPane.WARNING_MESSAGE);
@@ -124,14 +125,14 @@ public class LoadedTaxpayersJDialog extends JDialog {
 				if (loadedTaxpayersJList.getSelectedIndex()!=-1){
 					int dialogResult = JOptionPane.showConfirmDialog (null, "Διαγραφή επιλεγμένου φορολογούμενου("+loadedTaxpayersJList.getSelectedValue().toString()+") απο την βάση δεδομένων?", "Επιβεβαίωση διαγραφής", JOptionPane.YES_NO_OPTION);
 					if(dialogResult == JOptionPane.YES_OPTION){
-						Database.removeTaxpayerFromArrayList(loadedTaxpayersJList.getSelectedIndex());
+						Database.getDatabase().removeTaxpayerFromArrayList(loadedTaxpayersJList.getSelectedIndex());
 						
 						fillLoadedTaxpayersJList();
 						
 						JLabel totalLoadedTaxpayersJLabel = (JLabel)appMainWindow.getContentPane().getComponent(1);
-						totalLoadedTaxpayersJLabel.setText(Integer.toString(Database.getTaxpayersArrayListSize()));
+						totalLoadedTaxpayersJLabel.setText(Integer.toString(Database.getDatabase().getTaxpayersArrayListSize()));
 						
-						if (Database.getTaxpayersArrayListSize()==0) dispose();
+						if (Database.getDatabase().getTaxpayersArrayListSize()==0) dispose();
 					}
 				}
 				else{
@@ -157,7 +158,7 @@ public class LoadedTaxpayersJDialog extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				int taxpayerIndex = loadedTaxpayersJList.getSelectedIndex();
 				if (taxpayerIndex!=-1){
-					OutputSystem.createTaxpayerReceiptsPieJFreeChart(taxpayerIndex);
+					OutputSystem.getOutputSystem().createTaxpayerReceiptsPieJFreeChart(taxpayerIndex);
 				}
 				else{
 					JOptionPane.showMessageDialog(null, "Δεν έχεις επιλέξει κάποιον φορολογούμενο απο την λίστα.", "Σφάλμα", JOptionPane.WARNING_MESSAGE);
@@ -169,7 +170,7 @@ public class LoadedTaxpayersJDialog extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				int taxpayerIndex = loadedTaxpayersJList.getSelectedIndex();
 				if (taxpayerIndex!=-1){
-					OutputSystem.createTaxpayerTaxAnalysisBarJFreeChart(taxpayerIndex);
+					OutputSystem.getOutputSystem().createTaxpayerTaxAnalysisBarJFreeChart(taxpayerIndex);
 				}
 				else{
 					JOptionPane.showMessageDialog(null, "Δεν έχεις επιλέξει κάποιον φορολογούμενο απο την λίστα.", "Σφάλμα", JOptionPane.WARNING_MESSAGE);
@@ -183,13 +184,13 @@ public class LoadedTaxpayersJDialog extends JDialog {
 				if (taxpayerIndex!=-1){
 					JFileChooser saveFileFolderChooser = new JFileChooser();
 					saveFileFolderChooser.setCurrentDirectory(new java.io.File("."));
-					saveFileFolderChooser.setDialogTitle("Επιλέξτε φάκελο αποθήκευσης "+Database.getTaxpayerFromArrayList(taxpayerIndex).getAFM()+"_LOG.txt");
+					saveFileFolderChooser.setDialogTitle("Επιλέξτε φάκελο αποθήκευσης "+Database.getDatabase().getTaxpayerFromArrayList(taxpayerIndex).getAFM()+"_LOG.txt");
 					saveFileFolderChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 					
 					if(saveFileFolderChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 					    String savePath = saveFileFolderChooser.getSelectedFile().toString();
 					    
-					    OutputSystem.saveTaxpayerInfoToTxtLogFile(savePath, taxpayerIndex);
+					    OutputSystem.getOutputSystem().saveTaxpayerInfoToTxtLogFile(savePath, taxpayerIndex);
 					}
 				}
 				else{
@@ -204,13 +205,13 @@ public class LoadedTaxpayersJDialog extends JDialog {
 				if (taxpayerIndex!=-1){
 					JFileChooser saveFileFolderChooser = new JFileChooser();
 					saveFileFolderChooser.setCurrentDirectory(new java.io.File("."));
-					saveFileFolderChooser.setDialogTitle("Επιλέξτε φάκελο αποθήκευσης "+Database.getTaxpayerFromArrayList(taxpayerIndex).getAFM()+"_LOG.xml");
+					saveFileFolderChooser.setDialogTitle("Επιλέξτε φάκελο αποθήκευσης "+Database.getDatabase().getTaxpayerFromArrayList(taxpayerIndex).getAFM()+"_LOG.xml");
 					saveFileFolderChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 					
 					if(saveFileFolderChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 					    String savePath = saveFileFolderChooser.getSelectedFile().toString();
 					    
-					    OutputSystem.saveTaxpayerInfoToXmlLogFile(savePath, taxpayerIndex);
+					    OutputSystem.getOutputSystem().saveTaxpayerInfoToXmlLogFile(savePath, taxpayerIndex);
 					}
 				}
 				else{
@@ -221,7 +222,7 @@ public class LoadedTaxpayersJDialog extends JDialog {
 	}
 	
 	public void fillLoadedTaxpayersJList(){
-		String[] jlistValues = Database.getTaxpayersNameAfmValuesPairList();
+		String[] jlistValues = Database.getDatabase().getTaxpayersNameAfmValuesPairList();
 		
 		loadedTaxpayersJList.setModel(new AbstractListModel() {
 			String[] values = jlistValues;

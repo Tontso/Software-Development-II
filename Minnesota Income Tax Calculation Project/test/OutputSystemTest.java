@@ -29,6 +29,8 @@ import outputManagePackage.OutputSystem;
 @TestMethodOrder(OrderAnnotation.class)
 class OutputSystemTest {
 	
+	Database database = Database.getDatabase();
+	
 
 	@Test
 	@Order(1)
@@ -38,11 +40,11 @@ class OutputSystemTest {
 
 		List<String> myTestList = new ArrayList<>();
 		myTestList.add("130456093_INFO.txt");
-		InputSystem.addTaxpayersDataFromFilesIntoDatabase("test/testsOutputFiles", myTestList);
+		InputSystem.getInputSystem().addTaxpayersDataFromFilesIntoDatabase("test/testsOutputFiles", myTestList);
 		
-		Database.getTaxpayerFromArrayList(0).removeReceiptFromList(4);
+		database.getTaxpayerFromArrayList(0).removeReceiptFromList(4);
 		
-		OutputSystem.saveUpdatedTaxpayerTxtInputFile("test//testsOutputFiles//130456093_INFO.txt", 0);
+		OutputSystem.getOutputSystem().saveUpdatedTaxpayerTxtInputFile("test//testsOutputFiles//130456093_INFO.txt", 0);
 		
 		Scanner inputStream = null;
 		try	{
@@ -101,10 +103,10 @@ class OutputSystemTest {
 		
 		
 		//RESET TEXTFILE FOR NEXT TESTS
-		Database.getTaxpayerFromArrayList(0).addReceiptToList(testReceipt5);
-		OutputSystem.saveUpdatedTaxpayerTxtInputFile("test//testsOutputFiles//130456093_INFO.txt", 0);
+		database.getTaxpayerFromArrayList(0).addReceiptToList(testReceipt5);
+		OutputSystem.getOutputSystem().saveUpdatedTaxpayerTxtInputFile("test//testsOutputFiles//130456093_INFO.txt", 0);
 		
-		Database.removeTaxpayerFromArrayList(0);
+		database.removeTaxpayerFromArrayList(0);
 		
 		
 	}
@@ -123,11 +125,11 @@ class OutputSystemTest {
 		List<String> myTestList = new ArrayList<>();
 		myTestList.add("130456094_INFO.xml");
 		
-		InputSystem.addTaxpayersDataFromFilesIntoDatabase("test/testsOutputFiles", myTestList);		
+		InputSystem.getInputSystem().addTaxpayersDataFromFilesIntoDatabase("test/testsOutputFiles", myTestList);		
 		
-		Database.getTaxpayerFromArrayList(0).removeReceiptFromList(2);
+		database.getTaxpayerFromArrayList(0).removeReceiptFromList(2);
 		
-		OutputSystem.saveUpdatedTaxpayerXmlInputFile("test//testsOutputFiles//130456094_INFO.xml", 0);
+		OutputSystem.getOutputSystem().saveUpdatedTaxpayerXmlInputFile("test//testsOutputFiles//130456094_INFO.xml", 0);
 		
 		Scanner inputStream = null;
 		try	{
@@ -164,10 +166,10 @@ class OutputSystemTest {
 		assertEquals("<Number> 89 </Number>", inputStream.nextLine());
 		
 		//RESET TEXTFILE FOR NEXT TESTS
-		Database.getTaxpayerFromArrayList(0).addReceiptToList(testReceipt3);
-		OutputSystem.saveUpdatedTaxpayerXmlInputFile("test//testsOutputFiles//130456094_INFO.xml", 0);
+		database.getTaxpayerFromArrayList(0).addReceiptToList(testReceipt3);
+		OutputSystem.getOutputSystem().saveUpdatedTaxpayerXmlInputFile("test//testsOutputFiles//130456094_INFO.xml", 0);
 		
-		Database.removeTaxpayerFromArrayList(0);
+		database.removeTaxpayerFromArrayList(0);
 		
 		
 	}
@@ -185,8 +187,8 @@ class OutputSystemTest {
 		expectedTaxpayer.addReceiptToList(testReceipt2);
 		expectedTaxpayer.addReceiptToList(testReceipt3);
 		expectedTaxpayer.addReceiptToList(testReceipt4);
-		Database.addTaxpayerToList(expectedTaxpayer);
-		OutputSystem.saveTaxpayerInfoToTxtLogFile("C:\\Users\\tommy\\Desktop", 0);
+		database.addTaxpayerToList(expectedTaxpayer);
+		OutputSystem.getOutputSystem().saveTaxpayerInfoToTxtLogFile("C:\\Users\\tommy\\Desktop", 0);
 		
 		Scanner inputStream = null;
 		try
@@ -211,7 +213,7 @@ class OutputSystemTest {
 		assertEquals("Health: 500.0", inputStream.nextLine());
 		assertEquals("Other: 900.0", inputStream.nextLine());
 		
-		Database.removeTaxpayerFromArrayList(0);
+		database.removeTaxpayerFromArrayList(0);
 		
 	}
 
@@ -225,8 +227,8 @@ class OutputSystemTest {
 		expectedTaxpayer.addReceiptToList(testReceipt);
 		expectedTaxpayer.addReceiptToList(testReceipt2);
 		expectedTaxpayer.addReceiptToList(testReceipt3);
-		Database.addTaxpayerToList(expectedTaxpayer);
-		OutputSystem.saveTaxpayerInfoToXmlLogFile("C:\\Users\\tommy\\Desktop", 0);
+		database.addTaxpayerToList(expectedTaxpayer);
+		OutputSystem.getOutputSystem().saveTaxpayerInfoToXmlLogFile("C:\\Users\\tommy\\Desktop", 0);
 		
 		Scanner inputStream = null;
 		try
@@ -256,7 +258,7 @@ class OutputSystemTest {
 	@Test
 	@Order(5)
 	void testCreateTaxpayerReceiptsPieJFreeChart() {
-		Database.removeTaxpayerFromArrayList(0);
+		database.removeTaxpayerFromArrayList(0);
 		Taxpayer expectedTaxpayer = new Taxpayer("Apostolos Zarras", "130456093", "married filing jointly", "22570");
 		Receipt testReceipt = new Receipt("Basic", "1", "25/2/2014", "2000", "Hand Made Clothes", "Greece", "Ioannina", "Kaloudi ", "10");
 		Receipt testReceipt2 = new Receipt("Entertainment", "2", "28/2/2014", "500", "Floca Cafe", "Greece", "Ioannina", "Kavafi", "4");
@@ -266,7 +268,7 @@ class OutputSystemTest {
 		expectedTaxpayer.addReceiptToList(testReceipt2);
 		expectedTaxpayer.addReceiptToList(testReceipt3);
 		expectedTaxpayer.addReceiptToList(testReceipt4);
-		Database.addTaxpayerToList(expectedTaxpayer);
+		database.addTaxpayerToList(expectedTaxpayer);
 		
 		DefaultPieDataset receiptPieChartDataset = new DefaultPieDataset();;
 		receiptPieChartDataset.setValue("Basic", expectedTaxpayer.getKindOfReceiptsTotalAmount("Basic"));
@@ -275,14 +277,14 @@ class OutputSystemTest {
 		receiptPieChartDataset.setValue("Health", expectedTaxpayer.getKindOfReceiptsTotalAmount("Health"));
 		receiptPieChartDataset.setValue("Other", expectedTaxpayer.getKindOfReceiptsTotalAmount("Other"));
 		
-		OutputSystem.createTaxpayerReceiptsPieJFreeChart(0);
-		assertEquals(receiptPieChartDataset.getValue("Basic"), OutputSystem.getReceiptPieChartDataset().getValue("Basic"));
-		assertEquals(receiptPieChartDataset.getValue("Entertainment"), OutputSystem.getReceiptPieChartDataset().getValue("Entertainment"));
-		assertEquals(receiptPieChartDataset.getValue("Travel"), OutputSystem.getReceiptPieChartDataset().getValue("Travel"));
-		assertEquals(receiptPieChartDataset.getValue("Health"), OutputSystem.getReceiptPieChartDataset().getValue("Health"));
-		assertEquals(receiptPieChartDataset.getValue("Other"), OutputSystem.getReceiptPieChartDataset().getValue("Other"));
+		OutputSystem.getOutputSystem().createTaxpayerReceiptsPieJFreeChart(0);
+		assertEquals(receiptPieChartDataset.getValue("Basic"), OutputSystem.getOutputSystem().getReceiptPieChartDataset().getValue("Basic"));
+		assertEquals(receiptPieChartDataset.getValue("Entertainment"), OutputSystem.getOutputSystem().getReceiptPieChartDataset().getValue("Entertainment"));
+		assertEquals(receiptPieChartDataset.getValue("Travel"), OutputSystem.getOutputSystem().getReceiptPieChartDataset().getValue("Travel"));
+		assertEquals(receiptPieChartDataset.getValue("Health"), OutputSystem.getOutputSystem().getReceiptPieChartDataset().getValue("Health"));
+		assertEquals(receiptPieChartDataset.getValue("Other"), OutputSystem.getOutputSystem().getReceiptPieChartDataset().getValue("Other"));
 		
-		Database.removeTaxpayerFromArrayList(0);
+		database.removeTaxpayerFromArrayList(0);
 	}
 
 	@Test
@@ -299,10 +301,10 @@ class OutputSystemTest {
 		expectedTaxpayer.addReceiptToList(testReceipt3);
 		expectedTaxpayer.addReceiptToList(testReceipt4);
 		expectedTaxpayer.addReceiptToList(testReceipt5);
-		Database.addTaxpayerToList(expectedTaxpayer);
+		database.addTaxpayerToList(expectedTaxpayer);
 		
 		DefaultCategoryDataset taxAnalysisBarChartDataset = new DefaultCategoryDataset();
-		Taxpayer taxpayer = Database.getTaxpayerFromArrayList(0);
+		Taxpayer taxpayer = database.getTaxpayerFromArrayList(0);
 		
 		String taxVariationType = taxpayer.getTaxInxrease()!=0? "Tax Increase" : "Tax Decrease";
 		double taxVariationAmount = taxpayer.getTaxInxrease()!=0? taxpayer.getTaxInxrease() : taxpayer.getTaxDecrease()*(-1);
@@ -313,13 +315,13 @@ class OutputSystemTest {
 
 		JFreeChart taxAnalysisJFreeChart = ChartFactory.createBarChart("Tax Analysis Bar Chart", "",  "Tax Analysis in $", taxAnalysisBarChartDataset, PlotOrientation.VERTICAL, true, true, false);
 
-		ChartFrame receiptPieChartFrame = new ChartFrame(Database.getTaxpayerNameAfmValuesPairList(0), taxAnalysisJFreeChart);
+		ChartFrame receiptPieChartFrame = new ChartFrame(database.getTaxpayerNameAfmValuesPairList(0), taxAnalysisJFreeChart);
 		
-		OutputSystem.createTaxpayerTaxAnalysisBarJFreeChart(0);
+		OutputSystem.getOutputSystem().createTaxpayerTaxAnalysisBarJFreeChart(0);
 		
-		assertEquals(taxAnalysisBarChartDataset.getValue("Tax", "Basic Tax"), OutputSystem.getDefaultCategoryDataset().getValue("Tax", "Basic Tax"));
-		assertEquals(taxAnalysisBarChartDataset.getValue("Tax", "Total Tax"), OutputSystem.getDefaultCategoryDataset().getValue("Tax", "Total Tax"));
-		assertEquals(taxAnalysisBarChartDataset.getValue("Tax", taxVariationType), OutputSystem.getDefaultCategoryDataset().getValue("Tax", taxVariationType));
+		assertEquals(taxAnalysisBarChartDataset.getValue("Tax", "Basic Tax"), OutputSystem.getOutputSystem().getDefaultCategoryDataset().getValue("Tax", "Basic Tax"));
+		assertEquals(taxAnalysisBarChartDataset.getValue("Tax", "Total Tax"), OutputSystem.getOutputSystem().getDefaultCategoryDataset().getValue("Tax", "Total Tax"));
+		assertEquals(taxAnalysisBarChartDataset.getValue("Tax", taxVariationType), OutputSystem.getOutputSystem().getDefaultCategoryDataset().getValue("Tax", taxVariationType));
 
 		
 		

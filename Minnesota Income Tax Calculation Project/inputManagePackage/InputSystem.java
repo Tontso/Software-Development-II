@@ -10,7 +10,20 @@ import dataManagePackage.Receipt.Receipt;
 
 public class InputSystem {
 	
-	public static void addTaxpayersDataFromFilesIntoDatabase(String afmInfoFilesFolderPath, List<String> taxpayersAfmInfoFiles){
+	private static InputSystem inputSystem = null;
+	
+	private InputSystem () {
+		
+	}
+	
+	public static InputSystem getInputSystem() {
+		if(inputSystem == null) {
+			inputSystem = new InputSystem();
+		}
+		return inputSystem;
+	}
+	
+	public void addTaxpayersDataFromFilesIntoDatabase(String afmInfoFilesFolderPath, List<String> taxpayersAfmInfoFiles){
 		for (String afmInfoFile : taxpayersAfmInfoFiles)
 		{		
 			if (afmInfoFile.endsWith(".txt")){
@@ -22,7 +35,7 @@ public class InputSystem {
 		}
 	}
 	
-	private static void loadTaxpayerDataFromTxtFileIntoDatabase(String afmInfoFileFolderPath, String afmInfoFile){
+	private void loadTaxpayerDataFromTxtFileIntoDatabase(String afmInfoFileFolderPath, String afmInfoFile){
 		Scanner inputStream = null;
 		try
 		{
@@ -61,14 +74,14 @@ public class InputSystem {
 			newTaxpayer.addReceiptToList(newReceipt);
 		}
 		
-		Database.addTaxpayerToList(newTaxpayer);
+		Database.getDatabase().addTaxpayerToList(newTaxpayer);
 	}
 	
-	private static String getParameterValueFromTxtFileLine(String fileLine, String parameterName){
+	private String getParameterValueFromTxtFileLine(String fileLine, String parameterName){
 		return fileLine.substring(parameterName.length(), fileLine.length());
 	}
 	
-	private static void loadTaxpayersDataFromXmlFileIntoDatabase(String afmInfoFileFolderPath, String afmInfoFile){
+	private void loadTaxpayersDataFromXmlFileIntoDatabase(String afmInfoFileFolderPath, String afmInfoFile){
 		Scanner inputStream = null;
 		try
 		{
@@ -108,10 +121,10 @@ public class InputSystem {
 			newTaxpayer.addReceiptToList(newReceipt);
 		}
 		
-		Database.addTaxpayerToList(newTaxpayer);
+		Database.getDatabase().addTaxpayerToList(newTaxpayer);
 	}
 	
-	private static String getParameterValueFromXmlFileLine(String fileLine, String parameterStartField, String parameterEndField){
+	private String getParameterValueFromXmlFileLine(String fileLine, String parameterStartField, String parameterEndField){
 		return fileLine.substring(parameterStartField.length(), fileLine.length()-parameterEndField.length());
 	}
 }

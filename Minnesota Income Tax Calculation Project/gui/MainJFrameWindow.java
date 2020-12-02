@@ -1,20 +1,21 @@
 package gui;
-import dataManagePackage.*;
-
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JOptionPane;
+
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.Color;
-import javax.swing.SwingConstants;
+import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
+
+import dataManagePackage.Database;
 
 public class MainJFrameWindow {
 
@@ -96,7 +97,8 @@ public class MainJFrameWindow {
 				    String afmInfoFilesFolderPath = afmInfoFilesFolderChooser.getSelectedFile().toString();
 				    JOptionPane.showMessageDialog(null, afmInfoFilesFolderPath, "Διαδρομή φακέλου αρχείων εισόδου", JOptionPane.INFORMATION_MESSAGE);
 				    
-				    Database.setTaxpayersInfoFilesPath(afmInfoFilesFolderPath);
+				    Database database = Database.getDatabase();
+				    database.setTaxpayersInfoFilesPath(afmInfoFilesFolderPath);
 				    
 				    TaxpayerLoadDataJDialog taxpayerLoadDataJDialog = new TaxpayerLoadDataJDialog(taxationMainWindowJFrame);
 				    taxpayerLoadDataJDialog.fillTaxpayersAfmInfoFilesJList(afmInfoFilesFolderPath);
