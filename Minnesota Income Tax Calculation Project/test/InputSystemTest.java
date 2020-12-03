@@ -39,7 +39,7 @@ class InputSystemTest {
 		assertEquals(expectedTaxpayer.getFamilyStatus(), database.getTaxpayerFromArrayList(0).getFamilyStatus());
 		assertEquals(expectedTaxpayer.getIncome(), database.getTaxpayerFromArrayList(0).getIncome());
 		
-		//Check if load right taxpayer's receips
+		//Check if load right taxpayer's receipts
 		Receipt testReceipt = new Receipt("Basic", "1", "25/2/2014", "2000", "Hand Made Clothes", "Greece", "Ioannina", "Kaloudi ", "10");
 		Receipt testReceipt2 = new Receipt("Entertainment", "2", "28/2/2014", "500", "Floca Cafe", "Greece", "Ioannina", "Kavafi", "4");
 		Receipt testReceipt3 = new Receipt("Health", "3", "10/3/2014", "500", "Dentist", "Greece", "Ioannina", "Lamprou", "20 ");

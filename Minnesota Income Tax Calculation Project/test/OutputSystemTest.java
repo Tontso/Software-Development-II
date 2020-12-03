@@ -35,6 +35,7 @@ class OutputSystemTest {
 	@Test
 	@Order(1)
 	void testSaveUpdatedTaxpayerTxtInputFile() {
+		System.out.println("test 1");
 
 		Receipt testReceipt5 = new Receipt("Other", "5", "3/5/2014", "600", "Toys Store", "Greece", "Ioannina", "Omhrou", "5");
 
@@ -114,13 +115,10 @@ class OutputSystemTest {
 	@Test
 	@Order(2)
 	void testSaveUpdatedTaxpayerXmlInputFile() {
-//		Taxpayer expectedTaxpayer = new Taxpayer("Nikos Zisis", "130456094", "head of household", "40000");
-//		Receipt testReceipt = new Receipt("Other", "1", "25/2/2014", "2000", "Omega Watches", "Greece", "Ioannina", "Kaloudi ", "4");
-//		Receipt testReceipt2 = new Receipt("Entertainment", "2", "10/5/2014", "2000", "Hotel Du Lac", "Greece", "Ioannina", "Lake", "89");
+		System.out.println("test 2");
+
 		Receipt testReceipt3 = new Receipt("Basic", "3", "5/6/2014", "4000", "IKEA", "Greece", "Ioannina", "Averof", "100 ");
-//		expectedTaxpayer.addReceiptToList(testReceipt);
-//		expectedTaxpayer.addReceiptToList(testReceipt2);
-//		expectedTaxpayer.addReceiptToList(testReceipt3);
+
 		
 		List<String> myTestList = new ArrayList<>();
 		myTestList.add("130456094_INFO.xml");
@@ -177,6 +175,7 @@ class OutputSystemTest {
 	@Test
 	@Order(3)
 	void testSaveTaxpayerInfoToTxtLogFile() {
+		System.out.println("test 3");
 	
 		Taxpayer expectedTaxpayer = new Taxpayer("Apostolos Zarras", "130456093", "married filing jointly", "22570");
 		Receipt testReceipt = new Receipt("Basic", "1", "25/2/2014", "2000", "Hand Made Clothes", "Greece", "Ioannina", "Kaloudi ", "10");
@@ -220,6 +219,7 @@ class OutputSystemTest {
 	@Test
 	@Order(4)
 	void testSaveTaxpayerInfoToXmlLogFile() {
+		System.out.println("test 4");
 		Taxpayer expectedTaxpayer = new Taxpayer("Nikos Zisis", "130456094", "head of household", "40000");
 		Receipt testReceipt = new Receipt("Other", "1", "25/2/2014", "2000", "Omega Watches", "Greece", "Ioannina", "Kaloudi ", "4");
 		Receipt testReceipt2 = new Receipt("Entertainment", "2", "10/5/2014", "2000", "Hotel Du Lac", "Greece", "Ioannina", "Lake", "89");
@@ -258,6 +258,7 @@ class OutputSystemTest {
 	@Test
 	@Order(5)
 	void testCreateTaxpayerReceiptsPieJFreeChart() {
+		System.out.println("test 5");
 		database.removeTaxpayerFromArrayList(0);
 		Taxpayer expectedTaxpayer = new Taxpayer("Apostolos Zarras", "130456093", "married filing jointly", "22570");
 		Receipt testReceipt = new Receipt("Basic", "1", "25/2/2014", "2000", "Hand Made Clothes", "Greece", "Ioannina", "Kaloudi ", "10");
@@ -290,6 +291,7 @@ class OutputSystemTest {
 	@Test
 	@Order(6)
 	void testCreateTaxpayerTaxAnalysisBarJFreeChart() {
+		System.out.println("test 6");
 		Taxpayer expectedTaxpayer = new Taxpayer("Apostolos Zarras", "130456093", "married filing jointly", "22570");
 		Receipt testReceipt = new Receipt("Basic", "1", "25/2/2014", "2000", "Hand Made Clothes", "Greece", "Ioannina", "Kaloudi ", "10");
 		Receipt testReceipt2 = new Receipt("Entertainment", "2", "28/2/2014", "500", "Floca Cafe", "Greece", "Ioannina", "Kavafi", "4");
