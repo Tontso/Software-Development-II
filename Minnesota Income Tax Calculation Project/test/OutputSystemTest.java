@@ -23,7 +23,9 @@ import dataManagePackage.Database;
 import dataManagePackage.Taxpayer;
 import dataManagePackage.Receipt.Receipt;
 import inputManagePackage.InputSystem;
+import outputManagePackage.BarChart;
 import outputManagePackage.OutputSystem;
+import outputManagePackage.PieChart;
 
 
 @TestMethodOrder(OrderAnnotation.class)
@@ -278,12 +280,12 @@ class OutputSystemTest {
 		receiptPieChartDataset.setValue("Health", expectedTaxpayer.getKindOfReceiptsTotalAmount("Health"));
 		receiptPieChartDataset.setValue("Other", expectedTaxpayer.getKindOfReceiptsTotalAmount("Other"));
 		
-		OutputSystem.getOutputSystem().createTaxpayerReceiptsPieJFreeChart(0);
-		assertEquals(receiptPieChartDataset.getValue("Basic"), OutputSystem.getOutputSystem().getReceiptPieChartDataset().getValue("Basic"));
-		assertEquals(receiptPieChartDataset.getValue("Entertainment"), OutputSystem.getOutputSystem().getReceiptPieChartDataset().getValue("Entertainment"));
-		assertEquals(receiptPieChartDataset.getValue("Travel"), OutputSystem.getOutputSystem().getReceiptPieChartDataset().getValue("Travel"));
-		assertEquals(receiptPieChartDataset.getValue("Health"), OutputSystem.getOutputSystem().getReceiptPieChartDataset().getValue("Health"));
-		assertEquals(receiptPieChartDataset.getValue("Other"), OutputSystem.getOutputSystem().getReceiptPieChartDataset().getValue("Other"));
+		PieChart.getPieChart().createTaxpayerReceiptsPieJFreeChart(0);
+		assertEquals(receiptPieChartDataset.getValue("Basic"), PieChart.getPieChart().getReceiptPieChartDataset().getValue("Basic"));
+		assertEquals(receiptPieChartDataset.getValue("Entertainment"), PieChart.getPieChart().getReceiptPieChartDataset().getValue("Entertainment"));
+		assertEquals(receiptPieChartDataset.getValue("Travel"), PieChart.getPieChart().getReceiptPieChartDataset().getValue("Travel"));
+		assertEquals(receiptPieChartDataset.getValue("Health"), PieChart.getPieChart().getReceiptPieChartDataset().getValue("Health"));
+		assertEquals(receiptPieChartDataset.getValue("Other"), PieChart.getPieChart().getReceiptPieChartDataset().getValue("Other"));
 		
 		database.removeTaxpayerFromArrayList(0);
 	}
@@ -319,11 +321,11 @@ class OutputSystemTest {
 
 		ChartFrame receiptPieChartFrame = new ChartFrame(database.getTaxpayerNameAfmValuesPairList(0), taxAnalysisJFreeChart);
 		
-		OutputSystem.getOutputSystem().createTaxpayerTaxAnalysisBarJFreeChart(0);
+		BarChart.getBarChart().createTaxpayerTaxAnalysisBarJFreeChart(0);
 		
-		assertEquals(taxAnalysisBarChartDataset.getValue("Tax", "Basic Tax"), OutputSystem.getOutputSystem().getDefaultCategoryDataset().getValue("Tax", "Basic Tax"));
-		assertEquals(taxAnalysisBarChartDataset.getValue("Tax", "Total Tax"), OutputSystem.getOutputSystem().getDefaultCategoryDataset().getValue("Tax", "Total Tax"));
-		assertEquals(taxAnalysisBarChartDataset.getValue("Tax", taxVariationType), OutputSystem.getOutputSystem().getDefaultCategoryDataset().getValue("Tax", taxVariationType));
+		assertEquals(taxAnalysisBarChartDataset.getValue("Tax", "Basic Tax"), BarChart.getBarChart().getDefaultCategoryDataset().getValue("Tax", "Basic Tax"));
+		assertEquals(taxAnalysisBarChartDataset.getValue("Tax", "Total Tax"), BarChart.getBarChart().getDefaultCategoryDataset().getValue("Tax", "Total Tax"));
+		assertEquals(taxAnalysisBarChartDataset.getValue("Tax", taxVariationType), BarChart.getBarChart().getDefaultCategoryDataset().getValue("Tax", taxVariationType));
 
 		
 		

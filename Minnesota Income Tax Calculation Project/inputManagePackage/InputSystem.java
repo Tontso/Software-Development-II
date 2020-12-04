@@ -18,6 +18,7 @@ public class InputSystem {
 	private String[] secondWordTxt = {"", ""};
 	private String[] firstWordXml = {"<", "> "};
 	private String[] secondWordXml = {" </", ">"};
+	
 	private InputSystem () {
 		
 	}
@@ -86,7 +87,7 @@ public class InputSystem {
 		try{
 			return inputStream = new Scanner(new FileInputStream(filePath));
 		}catch(FileNotFoundException e){
-			System.out.println("Problem opening the file.");
+			System.out.println("Problem with opening the file.");
 			System.exit(0);
 			return null;
 		}

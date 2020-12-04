@@ -18,7 +18,9 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 
 import dataManagePackage.Database;
+import outputManagePackage.BarChart;
 import outputManagePackage.OutputSystem;
+import outputManagePackage.PieChart;
 
 public class LoadedTaxpayersJDialog extends JDialog {
 
@@ -158,7 +160,7 @@ public class LoadedTaxpayersJDialog extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				int taxpayerIndex = loadedTaxpayersJList.getSelectedIndex();
 				if (taxpayerIndex!=-1){
-					OutputSystem.getOutputSystem().createTaxpayerReceiptsPieJFreeChart(taxpayerIndex);
+					PieChart.getPieChart().createTaxpayerReceiptsPieJFreeChart(taxpayerIndex);
 				}
 				else{
 					JOptionPane.showMessageDialog(null, "Δεν έχεις επιλέξει κάποιον φορολογούμενο απο την λίστα.", "Σφάλμα", JOptionPane.WARNING_MESSAGE);
@@ -170,7 +172,7 @@ public class LoadedTaxpayersJDialog extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				int taxpayerIndex = loadedTaxpayersJList.getSelectedIndex();
 				if (taxpayerIndex!=-1){
-					OutputSystem.getOutputSystem().createTaxpayerTaxAnalysisBarJFreeChart(taxpayerIndex);
+					BarChart.getBarChart().createTaxpayerTaxAnalysisBarJFreeChart(taxpayerIndex);
 				}
 				else{
 					JOptionPane.showMessageDialog(null, "Δεν έχεις επιλέξει κάποιον φορολογούμενο απο την λίστα.", "Σφάλμα", JOptionPane.WARNING_MESSAGE);
