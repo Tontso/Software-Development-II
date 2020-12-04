@@ -2,6 +2,8 @@ package fileWords;
 
 public class TxtFileWords implements FileWords{
 	
+	private static TxtFileWords txtFileWords = null;
+	
 	private String[] firstWord = {"Name", "AFM", "Status", "Income", "Receipt ID", "Date", "Kind", "Amount", "Company", "Country", "City", "Street", "Number", "Receipts:", ""};
 	private String[] secondWord = {"", "", "", "", "", "", "", "", "", "", "", "", ""};
 	private String[] firstWordParsers = {"", ": "};
@@ -10,8 +12,15 @@ public class TxtFileWords implements FileWords{
 	private String saveAs = "_LOG.txt";
 	
 	
-	public TxtFileWords() {
+	private TxtFileWords() {
 		
+	}
+	
+	public static TxtFileWords getTxtFileWords() {
+		if(txtFileWords == null) {
+			txtFileWords = new TxtFileWords();
+		}
+		return txtFileWords;
 	}
 
 	@Override

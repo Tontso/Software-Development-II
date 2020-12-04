@@ -30,12 +30,10 @@ public class InputSystem {
 		for (String afmInfoFile : taxpayersAfmInfoFiles)
 		{		
 			if (afmInfoFile.endsWith(".txt")){
-				FileWords fileWords = new TxtFileWords();
-				loadTaxpayerDataFromFileIntoDatabase(afmInfoFilesFolderPath, afmInfoFile, fileWords);
+				loadTaxpayerDataFromFileIntoDatabase(afmInfoFilesFolderPath, afmInfoFile, TxtFileWords.getTxtFileWords());
 			}
 			else if (afmInfoFile.endsWith(".xml")){
-				FileWords fileWords = new XmlFileWords();
-				loadTaxpayerDataFromFileIntoDatabase(afmInfoFilesFolderPath, afmInfoFile, fileWords);
+				loadTaxpayerDataFromFileIntoDatabase(afmInfoFilesFolderPath, afmInfoFile, XmlFileWords.getXmlFileWords());
 			}
 		}
 	}

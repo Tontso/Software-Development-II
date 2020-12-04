@@ -83,15 +83,7 @@ public class OutputSystem {
 		
 		Taxpayer taxpayer = Database.getDatabase().getTaxpayerFromArrayList(taxpayerIndex);
 		
-		PrintWriter outputStream = null;
-		try
-		{
-			outputStream = new PrintWriter(new FileOutputStream(folderSavePath+"//"+taxpayer.getAFM()+fileWords.getSaveAs()));
-		}
-		catch(FileNotFoundException e)
-		{
-			System.out.println("Problem opening: "+folderSavePath+"//"+taxpayer.getAFM()+fileWords.getSaveAs());
-		}
+		PrintWriter outputStream = openFile(folderSavePath+"//"+taxpayer.getAFM()+fileWords.getSaveAs());
 		
 		outputStream.println(fileWords.makeSaveString(0, taxpayer.getName()));
 		outputStream.println(fileWords.makeSaveString(1, taxpayer.getAFM()));
@@ -113,6 +105,16 @@ public class OutputSystem {
 		outputStream.close();
 		
 		JOptionPane.showMessageDialog(null, "Η αποθήκευση ολοκληρώθηκε", "Μήνυμα", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	private PrintWriter openPrintWriter(String filepath) {
+		PrintWriter outputStream = null;
+		try	{
+			outputStream = new PrintWriter(new FileOutputStream(filepath));
+		}catch(FileNotFoundException e){
+			System.out.println("Problem opening: "+filepath);
+		}
+		return outputStream;
 	}
 	
 }

@@ -2,15 +2,26 @@ package fileWords;
 
 public class XmlFileWords implements FileWords{
 	
+	private static XmlFileWords xmlFileWords = null;
+	
 	private String[] firstAndSecondWord = {"Name", "AFM", "Status", "Income", "ReceiptID", "Date", "Kind", "Amount", "Company", "Country", "City", "Street", "Number", "<Receipts>", "</Receipts>"};
 	private String[] firstWordParser = {"<", "> "};
 	private String[] secondWordParser = {" </", ">"};
 	private String[] saveTaxpayerWords = {"Name", "AFM", "Income", "BasicTax", "TaxIncrease", "TaxDecrease", "TotalTax", "Receipts", "Entertainment", "Basic", "Travel", "Health", "Other"};
 	private String saveAs = "_LOG.xml";
-	public  XmlFileWords() {
+	
+	private  XmlFileWords() {
 		
 	}
+	
+	public static XmlFileWords getXmlFileWords() {
+		if(xmlFileWords == null) {
+			xmlFileWords = new XmlFileWords();
+		}
+		return xmlFileWords;
+	}
 
+	
 	@Override
 	public String[] getFirstWord() {
 		return firstAndSecondWord;
