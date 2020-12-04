@@ -2,7 +2,7 @@ package fileWords;
 
 public class XmlFileWords implements FileWords{
 	
-	private String[] firstAndSecondWord = {"Name", "AFM", "Status", "Income", "ReceiptID", "Date", "Kind", "Amount", "Company", "Country", "City", "Street", "Number"};
+	private String[] firstAndSecondWord = {"Name", "AFM", "Status", "Income", "ReceiptID", "Date", "Kind", "Amount", "Company", "Country", "City", "Street", "Number", "<Receipts>", "</Receipts>"};
 	private String[] firstWordParser = {"<", "> "};
 	private String[] secondWordParser = {" </", ">"};
 	

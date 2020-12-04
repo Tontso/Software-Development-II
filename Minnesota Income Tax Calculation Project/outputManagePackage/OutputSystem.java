@@ -43,21 +43,23 @@ public class OutputSystem {
 		
 		if (taxpayer.getReceiptsArrayList().size() > 0){
 			outputStream.println();
-			outputStream.println("Receipts:");
+			outputStream.println(firstWord[13]);
 			outputStream.println();
 			
 			for (Receipt receipt : taxpayer.getReceiptsArrayList()){
-				outputStream.println("Receipt ID: "+receipt.getId());
-				outputStream.println("Date: "+receipt.getDate());
-				outputStream.println("Kind: "+receipt.getKind());
-				outputStream.println("Amount: "+receipt.getAmount());
-				outputStream.println("Company: "+receipt.getCompany().getName());
-				outputStream.println("Country: "+receipt.getCompany().getCountry());
-				outputStream.println("City: "+receipt.getCompany().getCity());
-				outputStream.println("Street: "+receipt.getCompany().getStreet());
-				outputStream.println("Number: "+receipt.getCompany().getNumber());
+				outputStream.println(fileWords.makeString(firstWord[4], parsersFirstWord)+receipt.getId()+fileWords.makeString(secondWord[4],parsersSecondWord));
+				outputStream.println(fileWords.makeString(firstWord[5], parsersFirstWord)+receipt.getDate()+fileWords.makeString(secondWord[5],parsersSecondWord));
+				outputStream.println(fileWords.makeString(firstWord[6], parsersFirstWord)+receipt.getKind()+fileWords.makeString(secondWord[6],parsersSecondWord));
+				outputStream.println(fileWords.makeString(firstWord[7], parsersFirstWord)+receipt.getAmount()+fileWords.makeString(secondWord[7],parsersSecondWord));
+				outputStream.println(fileWords.makeString(firstWord[8], parsersFirstWord)+receipt.getCompany().getName()+fileWords.makeString(secondWord[8],parsersSecondWord));
+				outputStream.println(fileWords.makeString(firstWord[9], parsersFirstWord)+receipt.getCompany().getCountry()+fileWords.makeString(secondWord[9],parsersSecondWord));
+				outputStream.println(fileWords.makeString(firstWord[10], parsersFirstWord)+receipt.getCompany().getCity()+fileWords.makeString(secondWord[10],parsersSecondWord));
+				outputStream.println(fileWords.makeString(firstWord[11], parsersFirstWord)+receipt.getCompany().getStreet()+fileWords.makeString(secondWord[11],parsersSecondWord));
+				outputStream.println(fileWords.makeString(firstWord[12], parsersFirstWord)+receipt.getCompany().getNumber()+fileWords.makeString(secondWord[12],parsersSecondWord));			
 				outputStream.println();
 			}
+			
+			outputStream.println(firstWord[14]);
 		}
 		
 		outputStream.close();
@@ -74,41 +76,7 @@ public class OutputSystem {
 		return outputStream;
 	}
 	
-	
-	public void saveUpdatedTaxpayerXmlInputFile(String filePath, int taxpayerIndex){
-		PrintWriter outputStream = openFile(filePath);
-		
-		
-		Taxpayer taxpayer = Database.getDatabase().getTaxpayerFromArrayList(taxpayerIndex);
-		outputStream.println("<Name> "+taxpayer.getName()+" </Name>");
-		outputStream.println("<AFM> "+taxpayer.getAFM()+" </AFM>");
-		outputStream.println("<Status> "+taxpayer.getFamilyStatus().getFamilyStatus()+" </Status>");
-		outputStream.println("<Income> "+taxpayer.getIncome()+" </Income>");
-		
-		if (taxpayer.getReceiptsArrayList().size() > 0){
-			outputStream.println();
-			outputStream.println("<Receipts>");
-			outputStream.println();
-			
-			for (Receipt receipt : taxpayer.getReceiptsArrayList()){
-				outputStream.println("<ReceiptID> "+receipt.getId()+" </ReceiptID>");
-				outputStream.println("<Date> "+receipt.getDate()+" </Date>");
-				outputStream.println("<Kind> "+receipt.getKind()+" </Kind>");
-				outputStream.println("<Amount> "+receipt.getAmount()+" </Amount>");
-				outputStream.println("<Company> "+receipt.getCompany().getName()+" </Company>");
-				outputStream.println("<Country> "+receipt.getCompany().getCountry()+" </Country>");
-				outputStream.println("<City> "+receipt.getCompany().getCity()+" </City>");
-				outputStream.println("<Street> "+receipt.getCompany().getStreet()+" </Street>");
-				outputStream.println("<Number> "+receipt.getCompany().getNumber()+" </Number>");
-				outputStream.println();
-			}
-			
-			outputStream.println("</Receipts>");
-		}
-		
-		outputStream.close();
-	}
-	
+
 	
 	public void saveTaxpayerInfoToTxtLogFile(String folderSavePath, int taxpayerIndex){
 		Taxpayer taxpayer = Database.getDatabase().getTaxpayerFromArrayList(taxpayerIndex);

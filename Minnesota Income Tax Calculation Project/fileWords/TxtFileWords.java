@@ -2,7 +2,7 @@ package fileWords;
 
 public class TxtFileWords implements FileWords{
 	
-	private String[] firstWord = {"Name", "AFM", "Status", "Income", "Receipt ID", "Date", "Kind", "Amount", "Company", "Country", "City", "Street", "Number"};
+	private String[] firstWord = {"Name", "AFM", "Status", "Income", "Receipt ID", "Date", "Kind", "Amount", "Company", "Country", "City", "Street", "Number", "Receipts:", ""};
 	private String[] secondWord = {"", "", "", "", "", "", "", "", "", "", "", "", ""};
 	private String[] firstWordParsers = {"", ": "};
 	private String[] secondWordParsers = {"", ""};

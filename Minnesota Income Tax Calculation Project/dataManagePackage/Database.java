@@ -91,7 +91,7 @@ public class Database {
 			}
 			if (file.getName().toLowerCase().endsWith(".xml")){
 				FileWords fileWords = new XmlFileWords();
-				OutputSystem.getOutputSystem().saveUpdatedTaxpayerXmlInputFile(file.getAbsolutePath(), index);
+				OutputSystem.getOutputSystem().saveUpdatedTaxpayerTxtInputFile(file.getAbsolutePath(), index, fileWords);
 			}
 			break;
 		}

@@ -24,6 +24,7 @@ import dataManagePackage.Taxpayer;
 import dataManagePackage.Receipt.Receipt;
 import fileWords.FileWords;
 import fileWords.TxtFileWords;
+import fileWords.XmlFileWords;
 import inputManagePackage.InputSystem;
 import outputManagePackage.BarChart;
 import outputManagePackage.OutputSystem;
@@ -129,7 +130,8 @@ class OutputSystemTest {
 		
 		InputSystem.getInputSystem().addTaxpayersDataFromFilesIntoDatabase("test/testsOutputFiles", myTestList);
 		database.getTaxpayerFromArrayList(0).removeReceiptFromList(2);
-		OutputSystem.getOutputSystem().saveUpdatedTaxpayerXmlInputFile("test//testsOutputFiles//130456094_INFO.xml", 0);
+		FileWords fileWords = new XmlFileWords();
+		OutputSystem.getOutputSystem().saveUpdatedTaxpayerTxtInputFile("test//testsOutputFiles//130456094_INFO.xml", 0, fileWords);
 		
 		Scanner inputStream = null;
 		try	{
@@ -168,7 +170,7 @@ class OutputSystemTest {
 		
 		//RESET TEXTFILE FOR NEXT TESTS
 		database.getTaxpayerFromArrayList(0).addReceiptToList(testReceipt3);
-		OutputSystem.getOutputSystem().saveUpdatedTaxpayerXmlInputFile("test//testsOutputFiles//130456094_INFO.xml", 0);
+		OutputSystem.getOutputSystem().saveUpdatedTaxpayerTxtInputFile("test//testsOutputFiles//130456094_INFO.xml", 0,fileWords);
 		
 		database.removeTaxpayerFromArrayList(0);
 		
