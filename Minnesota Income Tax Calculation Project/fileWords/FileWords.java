@@ -12,5 +12,9 @@ public interface FileWords {
 	public String[] getSecondParsers();
 	
 	public String makeString(String value, String[] parsers);
+	
+	public String makeSaveString(int position, String value);
+	
+	public String getSaveAs();
 
 }

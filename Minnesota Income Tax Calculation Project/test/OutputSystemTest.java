@@ -192,7 +192,8 @@ class OutputSystemTest {
 		expectedTaxpayer.addReceiptToList(testReceipt3);
 		expectedTaxpayer.addReceiptToList(testReceipt4);
 		database.addTaxpayerToList(expectedTaxpayer);
-		OutputSystem.getOutputSystem().saveTaxpayerInfoToTxtLogFile("C:\\Users\\tommy\\Desktop", 0);
+		FileWords fileWords = new TxtFileWords();
+		OutputSystem.getOutputSystem().saveTaxpayerInfoToLogFile("C:\\Users\\tommy\\Desktop", 0, fileWords);
 		
 		Scanner inputStream = null;
 		try
@@ -233,7 +234,8 @@ class OutputSystemTest {
 		expectedTaxpayer.addReceiptToList(testReceipt2);
 		expectedTaxpayer.addReceiptToList(testReceipt3);
 		database.addTaxpayerToList(expectedTaxpayer);
-		OutputSystem.getOutputSystem().saveTaxpayerInfoToXmlLogFile("C:\\Users\\tommy\\Desktop", 0);
+		FileWords fileWords = new XmlFileWords();
+		OutputSystem.getOutputSystem().saveTaxpayerInfoToLogFile("C:\\Users\\tommy\\Desktop", 0, fileWords);
 		
 		Scanner inputStream = null;
 		try

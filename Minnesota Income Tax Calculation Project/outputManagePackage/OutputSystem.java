@@ -78,75 +78,41 @@ public class OutputSystem {
 	
 
 	
-	public void saveTaxpayerInfoToTxtLogFile(String folderSavePath, int taxpayerIndex){
+	public void saveTaxpayerInfoToLogFile(String folderSavePath, int taxpayerIndex, FileWords fileWords){
+		
+		
 		Taxpayer taxpayer = Database.getDatabase().getTaxpayerFromArrayList(taxpayerIndex);
 		
 		PrintWriter outputStream = null;
 		try
 		{
-			outputStream = new PrintWriter(new FileOutputStream(folderSavePath+"//"+taxpayer.getAFM()+"_LOG.txt"));
+			outputStream = new PrintWriter(new FileOutputStream(folderSavePath+"//"+taxpayer.getAFM()+fileWords.getSaveAs()));
 		}
 		catch(FileNotFoundException e)
 		{
-			System.out.println("Problem opening: "+folderSavePath+"//"+taxpayer.getAFM()+"_LOG.txt");
+			System.out.println("Problem opening: "+folderSavePath+"//"+taxpayer.getAFM()+fileWords.getSaveAs());
 		}
 		
-		outputStream.println("Name: "+taxpayer.getName());
-		outputStream.println("AFM: "+taxpayer.getAFM());
-		outputStream.println("Income: "+taxpayer.getIncome());
-		outputStream.println("Basic Tax: "+taxpayer.getBasicTax());
+		outputStream.println(fileWords.makeSaveString(0, taxpayer.getName()));
+		outputStream.println(fileWords.makeSaveString(1, taxpayer.getAFM()));
+		outputStream.println(fileWords.makeSaveString(2, taxpayer.getIncome()+""));
+		outputStream.println(fileWords.makeSaveString(3, taxpayer.getBasicTax()+""));
 		if (taxpayer.getTaxInxrease()!=0){
-			outputStream.println("Tax Increase: "+taxpayer.getTaxInxrease());
+			outputStream.println(fileWords.makeSaveString(4, taxpayer.getTaxInxrease()+""));
 		}else{
-			outputStream.println("Tax Decrease: "+taxpayer.getTaxDecrease());
+			outputStream.println(fileWords.makeSaveString(5, taxpayer.getTaxDecrease()+""));
 		}
-		outputStream.println("Total Tax: "+taxpayer.getTotalTax());
-		outputStream.println("Total Receipts Amount: "+taxpayer.getTotalReceiptsAmount());
-		outputStream.println("Entertainment: "+taxpayer.getKindOfReceiptsTotalAmount("Entertainment"));
-		outputStream.println("Basic: "+taxpayer.getKindOfReceiptsTotalAmount("Basic"));
-		outputStream.println("Travel: "+taxpayer.getKindOfReceiptsTotalAmount("Travel"));
-		outputStream.println("Health: "+taxpayer.getKindOfReceiptsTotalAmount("Health"));
-		outputStream.println("Other: "+taxpayer.getKindOfReceiptsTotalAmount("Other"));
+		outputStream.println(fileWords.makeSaveString(6, taxpayer.getTotalTax()+""));
+		outputStream.println(fileWords.makeSaveString(7, taxpayer.getTotalReceiptsAmount()+""));
+		outputStream.println(fileWords.makeSaveString(8, taxpayer.getKindOfReceiptsTotalAmount("Entertainment")+""));
+		outputStream.println(fileWords.makeSaveString(9, taxpayer.getKindOfReceiptsTotalAmount("Basic")+""));
+		outputStream.println(fileWords.makeSaveString(10, taxpayer.getKindOfReceiptsTotalAmount("Travel")+""));
+		outputStream.println(fileWords.makeSaveString(11, taxpayer.getKindOfReceiptsTotalAmount("Health")+""));
+		outputStream.println(fileWords.makeSaveString(12, taxpayer.getKindOfReceiptsTotalAmount("Other")+""));
 		
 		outputStream.close();
 		
 		JOptionPane.showMessageDialog(null, "Η αποθήκευση ολοκληρώθηκε", "Μήνυμα", JOptionPane.INFORMATION_MESSAGE);
 	}
-	
-	public void saveTaxpayerInfoToXmlLogFile(String folderSavePath, int taxpayerIndex){
-		Taxpayer taxpayer = Database.getDatabase().getTaxpayerFromArrayList(taxpayerIndex);
-		
-		PrintWriter outputStream = null;
-		try
-		{
-			outputStream = new PrintWriter(new FileOutputStream(folderSavePath+"//"+taxpayer.getAFM()+"_LOG.xml"));
-		}
-		catch(FileNotFoundException e)
-		{
-			System.out.println("Problem opening: "+folderSavePath+"//"+taxpayer.getAFM()+"_LOG.xml");
-		}
-		
-		outputStream.println("<Name> "+taxpayer.getName()+" </Name>");
-		outputStream.println("<AFM> "+taxpayer.getAFM()+" </AFM>");
-		outputStream.println("<Income> "+taxpayer.getIncome()+" </Income>");
-		outputStream.println("<BasicTax> "+taxpayer.getBasicTax()+" </BasicTax>");
-		if (taxpayer.getTaxInxrease()!=0){
-			outputStream.println("<TaxIncrease> "+taxpayer.getTaxInxrease()+" </TaxIncrease>");
-		}else{
-			outputStream.println("<TaxDecrease> "+taxpayer.getTaxDecrease()+" </TaxDecrease>");
-		}
-		outputStream.println("<TotalTax> "+taxpayer.getTotalTax()+" </TotalTax>");
-		outputStream.println("<Receipts> "+taxpayer.getTotalReceiptsAmount()+" </Receipts>");
-		outputStream.println("<Entertainment> "+taxpayer.getKindOfReceiptsTotalAmount("Entertainment")+" </Entertainment>");
-		outputStream.println("<Basic> "+taxpayer.getKindOfReceiptsTotalAmount("Basic")+" </Basic>");
-		outputStream.println("<Travel> "+taxpayer.getKindOfReceiptsTotalAmount("Travel")+" </Travel>");
-		outputStream.println("<Health> "+taxpayer.getKindOfReceiptsTotalAmount("Health")+" </Health>");
-		outputStream.println("<Other> "+taxpayer.getKindOfReceiptsTotalAmount("Other")+" </Other>");
-		
-		outputStream.close();
-		
-		JOptionPane.showMessageDialog(null, "Η αποθήκευση ολοκληρώθηκε", "Μήνυμα", JOptionPane.INFORMATION_MESSAGE);
-	}
-	
 	
 }

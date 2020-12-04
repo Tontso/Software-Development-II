@@ -18,6 +18,9 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 
 import dataManagePackage.Database;
+import fileWords.FileWords;
+import fileWords.TxtFileWords;
+import fileWords.XmlFileWords;
 import outputManagePackage.BarChart;
 import outputManagePackage.OutputSystem;
 import outputManagePackage.PieChart;
@@ -192,7 +195,8 @@ public class LoadedTaxpayersJDialog extends JDialog {
 					if(saveFileFolderChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 					    String savePath = saveFileFolderChooser.getSelectedFile().toString();
 					    
-					    OutputSystem.getOutputSystem().saveTaxpayerInfoToTxtLogFile(savePath, taxpayerIndex);
+					    FileWords fileWords = new TxtFileWords();
+					    OutputSystem.getOutputSystem().saveTaxpayerInfoToLogFile(savePath, taxpayerIndex, fileWords);
 					}
 				}
 				else{
@@ -212,8 +216,8 @@ public class LoadedTaxpayersJDialog extends JDialog {
 					
 					if(saveFileFolderChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 					    String savePath = saveFileFolderChooser.getSelectedFile().toString();
-					    
-					    OutputSystem.getOutputSystem().saveTaxpayerInfoToXmlLogFile(savePath, taxpayerIndex);
+					    FileWords fileWords = new XmlFileWords();
+					    OutputSystem.getOutputSystem().saveTaxpayerInfoToLogFile(savePath, taxpayerIndex,fileWords);
 					}
 				}
 				else{
