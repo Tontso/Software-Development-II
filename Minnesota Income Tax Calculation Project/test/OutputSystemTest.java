@@ -22,6 +22,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import dataManagePackage.Database;
 import dataManagePackage.Taxpayer;
 import dataManagePackage.Receipt.Receipt;
+import fileWords.FileWords;
+import fileWords.TxtFileWords;
 import inputManagePackage.InputSystem;
 import outputManagePackage.BarChart;
 import outputManagePackage.OutputSystem;
@@ -44,10 +46,10 @@ class OutputSystemTest {
 		List<String> myTestList = new ArrayList<>();
 		myTestList.add("130456093_INFO.txt");
 		InputSystem.getInputSystem().addTaxpayersDataFromFilesIntoDatabase("test/testsOutputFiles", myTestList);
-		
 		database.getTaxpayerFromArrayList(0).removeReceiptFromList(4);
 		
-		OutputSystem.getOutputSystem().saveUpdatedTaxpayerTxtInputFile("test//testsOutputFiles//130456093_INFO.txt", 0);
+		FileWords fileWords = new TxtFileWords();
+		OutputSystem.getOutputSystem().saveUpdatedTaxpayerTxtInputFile("test//testsOutputFiles//130456093_INFO.txt", 0, fileWords);
 		
 		Scanner inputStream = null;
 		try	{
@@ -107,7 +109,7 @@ class OutputSystemTest {
 		
 		//RESET TEXTFILE FOR NEXT TESTS
 		database.getTaxpayerFromArrayList(0).addReceiptToList(testReceipt5);
-		OutputSystem.getOutputSystem().saveUpdatedTaxpayerTxtInputFile("test//testsOutputFiles//130456093_INFO.txt", 0);
+		OutputSystem.getOutputSystem().saveUpdatedTaxpayerTxtInputFile("test//testsOutputFiles//130456093_INFO.txt", 0,fileWords);
 		
 		database.removeTaxpayerFromArrayList(0);
 		
@@ -125,10 +127,8 @@ class OutputSystemTest {
 		List<String> myTestList = new ArrayList<>();
 		myTestList.add("130456094_INFO.xml");
 		
-		InputSystem.getInputSystem().addTaxpayersDataFromFilesIntoDatabase("test/testsOutputFiles", myTestList);		
-		
+		InputSystem.getInputSystem().addTaxpayersDataFromFilesIntoDatabase("test/testsOutputFiles", myTestList);
 		database.getTaxpayerFromArrayList(0).removeReceiptFromList(2);
-		
 		OutputSystem.getOutputSystem().saveUpdatedTaxpayerXmlInputFile("test//testsOutputFiles//130456094_INFO.xml", 0);
 		
 		Scanner inputStream = null;
@@ -138,6 +138,7 @@ class OutputSystemTest {
 			System.out.println("Problem opening file.");
 			System.exit(0);
 		}
+		System.out.println();
 		assertEquals("<Name> Nikos Zisis </Name>", inputStream.nextLine());
 		assertEquals("<AFM> 130456094 </AFM>", inputStream.nextLine());
 		assertEquals("<Status> single </Status>", inputStream.nextLine());

@@ -28,9 +28,7 @@ class InputSystemTest {
 		
 		List<String> myTestList = new ArrayList<>();
 		myTestList.add("130456093_INFO.txt");
-		
 		InputSystem.getInputSystem().addTaxpayersDataFromFilesIntoDatabase("test/testsInputFiles", myTestList);
-		
 		Taxpayer expectedTaxpayer = new Taxpayer("Apostolos Zarras", "130456093", "Married Filing Jointly", "22570");
 		
 		//Check if load right the Taxpayer

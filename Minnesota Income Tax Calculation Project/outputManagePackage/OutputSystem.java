@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import dataManagePackage.Database;
 import dataManagePackage.Taxpayer;
 import dataManagePackage.Receipt.Receipt;
+import fileWords.FileWords;
 
 public class OutputSystem {
 	
@@ -26,22 +27,19 @@ public class OutputSystem {
 	}
 	
 
-	public void saveUpdatedTaxpayerTxtInputFile(String filePath, int taxpayerIndex){
-		PrintWriter outputStream = null;
-		try
-		{
-			outputStream = new PrintWriter(new FileOutputStream(filePath));
-		}
-		catch(FileNotFoundException e)
-		{
-			System.out.println("Problem opening: "+filePath);
-		}
+	public void saveUpdatedTaxpayerTxtInputFile(String filePath, int taxpayerIndex, FileWords fileWords){
+		String[] parsersFirstWord = fileWords.getFirstWordParsers();
+		String[] parsersSecondWord = fileWords.getSecondParsers();
+		String[] secondWord = fileWords.getSecondWord(); 
+		String[] firstWord = fileWords.getFirstWord();
+		
+		PrintWriter outputStream = openFile(filePath);
 		
 		Taxpayer taxpayer = Database.getDatabase().getTaxpayerFromArrayList(taxpayerIndex);
-		outputStream.println("Name: "+taxpayer.getName());
-		outputStream.println("AFM: "+taxpayer.getAFM());
-		outputStream.println("Status: "+taxpayer.getFamilyStatus().getFamilyStatus());
-		outputStream.println("Income: "+taxpayer.getIncome());
+		outputStream.println(fileWords.makeString(firstWord[0], parsersFirstWord)+taxpayer.getName()+fileWords.makeString(secondWord[0],parsersSecondWord));
+		outputStream.println(fileWords.makeString(firstWord[1], parsersFirstWord)+taxpayer.getAFM()+fileWords.makeString(secondWord[1],parsersSecondWord));
+		outputStream.println(fileWords.makeString(firstWord[2], parsersFirstWord)+taxpayer.getFamilyStatus().getFamilyStatus()+fileWords.makeString(secondWord[2],parsersSecondWord));
+		outputStream.println(fileWords.makeString(firstWord[3], parsersFirstWord)+taxpayer.getIncome()+fileWords.makeString(secondWord[3],parsersSecondWord));
 		
 		if (taxpayer.getReceiptsArrayList().size() > 0){
 			outputStream.println();
@@ -65,16 +63,21 @@ public class OutputSystem {
 		outputStream.close();
 	}
 	
-	public void saveUpdatedTaxpayerXmlInputFile(String filePath, int taxpayerIndex){
+	
+	private PrintWriter openFile(String filePath) {
 		PrintWriter outputStream = null;
-		try
-		{
+		try{
 			outputStream = new PrintWriter(new FileOutputStream(filePath));
-		}
-		catch(FileNotFoundException e)
-		{
+		}catch(FileNotFoundException e){
 			System.out.println("Problem opening: "+filePath);
 		}
+		return outputStream;
+	}
+	
+	
+	public void saveUpdatedTaxpayerXmlInputFile(String filePath, int taxpayerIndex){
+		PrintWriter outputStream = openFile(filePath);
+		
 		
 		Taxpayer taxpayer = Database.getDatabase().getTaxpayerFromArrayList(taxpayerIndex);
 		outputStream.println("<Name> "+taxpayer.getName()+" </Name>");
