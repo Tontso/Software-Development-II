@@ -16,6 +16,7 @@ public class TxtFileWords implements FileWords{
 		
 	}
 	
+	
 	public static TxtFileWords getTxtFileWords() {
 		if(txtFileWords == null) {
 			txtFileWords = new TxtFileWords();
@@ -23,24 +24,23 @@ public class TxtFileWords implements FileWords{
 		return txtFileWords;
 	}
 
+	
 	@Override
 	public String[] getFirstWord() {
 		return firstWord;
 	}
 
+	
 	@Override
-	public String[] getSecondWord() {
-		return secondWord;
+	public String loadDataString(int position, String fileLine) {
+		String firstWordData = firstWordParsers[0]+firstWord[position]+firstWordParsers[1];
+		String secondWordData = secondWordParsers[0]+secondWord[position]+secondWordParsers[1];
+		return getValue(fileLine, firstWordData, secondWordData);
 	}
-
-	@Override
-	public String[] getFirstWordParsers() {
-		return firstWordParsers;
-	}
-
-	@Override
-	public String[] getSecondParsers() {
-		return secondWordParsers;
+	
+	
+	private String getValue(String fileLine, String parameterStartField, String parameterEndField) {
+		return fileLine.substring(parameterStartField.length(), fileLine.length()-parameterEndField.length());
 	}
 	
 	
@@ -49,15 +49,26 @@ public class TxtFileWords implements FileWords{
 		return parsers[0]+value+parsers[1];
 	}
 
+	
 	@Override
 	public String makeSaveString(int position, String value) {
 		return firstWordParsers[0]+saveTaxpayerWords[position]+firstWordParsers[1]+value+secondWordParsers[0]+secondWord[position]+secondWordParsers[1];
 	}
+	
+	
+	@Override
+	public String makeUpdateString(int position, String value) {
+		return firstWordParsers[0]+firstWord[position]+firstWordParsers[1]+value+secondWordParsers[0]+secondWord[position]+secondWordParsers[1];
+	}
+
 
 	@Override
 	public String getSaveAs() {
 		return saveAs;
 	}
+
+	
+	
 
 	
 }

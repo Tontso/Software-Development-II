@@ -116,6 +116,7 @@ class OutputSystemTest {
 		
 	}
 
+	
 	@Test
 	@Order(2)
 	void testSaveUpdatedTaxpayerXmlInputFile() {
@@ -175,6 +176,7 @@ class OutputSystemTest {
 		
 	}
 	
+	
 	@Test
 	@Order(3)
 	void testSaveTaxpayerInfoToTxtLogFile() {
@@ -219,6 +221,7 @@ class OutputSystemTest {
 		
 	}
 
+	
 	@Test
 	@Order(4)
 	void testSaveTaxpayerInfoToXmlLogFile() {
@@ -259,6 +262,7 @@ class OutputSystemTest {
 		assertEquals("<Other> 2000.0 </Other>", inputStream.nextLine());
 	}
 
+	
 	@Test
 	@Order(5)
 	void testCreateTaxpayerReceiptsPieJFreeChart() {
@@ -292,6 +296,7 @@ class OutputSystemTest {
 		database.removeTaxpayerFromArrayList(0);
 	}
 
+	
 	@Test
 	@Order(6)
 	void testCreateTaxpayerTaxAnalysisBarJFreeChart() {

@@ -13,11 +13,14 @@ import fileWords.XmlFileWords;
 
 public class InputSystem {
 	
+	
 	private static InputSystem inputSystem = null;
+	
 	
 	private InputSystem () {
 		
 	}
+	
 	
 	public static InputSystem getInputSystem() {
 		if(inputSystem == null) {
@@ -25,6 +28,7 @@ public class InputSystem {
 		}
 		return inputSystem;
 	}
+	
 	
 	public void addTaxpayersDataFromFilesIntoDatabase(String afmInfoFilesFolderPath, List<String> taxpayersAfmInfoFiles){
 		for (String afmInfoFile : taxpayersAfmInfoFiles)
@@ -38,20 +42,29 @@ public class InputSystem {
 		}
 	}
 	
+	
 	private void loadTaxpayerDataFromFileIntoDatabase(String afmInfoFileFolderPath, String afmInfoFile, FileWords fileWords){
-		String[] parsersFirstWord = fileWords.getFirstWordParsers();
-		String[] parsersSecondWord = fileWords.getSecondParsers();
-		String[] secondWord = fileWords.getSecondWord(); 
-		String[] firstWord = fileWords.getFirstWord();
 
-		Scanner inputStream = openFile(afmInfoFileFolderPath+"\\"+afmInfoFile);	
-		String taxpayerName = getParameterValueFromXmlFileLine(inputStream.nextLine(), fileWords.makeString(firstWord[0], parsersFirstWord), fileWords.makeString(secondWord[0], parsersSecondWord));
-		String taxpayerAFM = getParameterValueFromXmlFileLine(inputStream.nextLine(), fileWords.makeString(firstWord[1], parsersFirstWord),  fileWords.makeString(secondWord[1], parsersSecondWord));
+		Scanner inputStream = openFile(afmInfoFileFolderPath+"\\"+afmInfoFile);
 		
-		String taxpayerStatus = getParameterValueFromXmlFileLine(inputStream.nextLine(),  fileWords.makeString(firstWord[2], parsersFirstWord), fileWords.makeString(secondWord[2], parsersSecondWord));
-		String taxpayerIncome = getParameterValueFromXmlFileLine(inputStream.nextLine(),  fileWords.makeString(firstWord[3], parsersFirstWord), fileWords.makeString(secondWord[3], parsersSecondWord));
-		Taxpayer newTaxpayer = new Taxpayer(taxpayerName, taxpayerAFM, taxpayerStatus, taxpayerIncome);
+		Taxpayer newTaxpayer = laodTaxpayer(fileWords, inputStream);	
+		loadReceipts(fileWords, newTaxpayer, inputStream);
 		
+		Database.getDatabase().addTaxpayerToList(newTaxpayer);
+	}
+	
+	
+	private Taxpayer laodTaxpayer(FileWords fileWords, Scanner inputStream) {		
+		String taxpayerName = fileWords.loadDataString(0,  inputStream.nextLine());
+		String taxpayerAFM = fileWords.loadDataString(1,  inputStream.nextLine());	
+		String taxpayerStatus = fileWords.loadDataString(2,  inputStream.nextLine());
+		String taxpayerIncome = fileWords.loadDataString(3,  inputStream.nextLine());
+		
+		return new Taxpayer(taxpayerName, taxpayerAFM, taxpayerStatus, taxpayerIncome);
+	}
+	
+	
+	private void loadReceipts(FileWords fileWords, Taxpayer taxpayer,  Scanner inputStream) {
 		String fileLine;
 		while (inputStream.hasNextLine()){
 			fileLine = inputStream.nextLine();
@@ -60,24 +73,22 @@ public class InputSystem {
 			if (fileLine.indexOf("<Receipts>")!=-1) continue;
 			if (fileLine.indexOf("</Receipts>")!=-1) break;
 			
-			String receiptID = getParameterValueFromXmlFileLine(fileLine, fileWords.makeString(firstWord[4], parsersFirstWord), fileWords.makeString(secondWord[4], parsersSecondWord));
-			String receiptDate = getParameterValueFromXmlFileLine(inputStream.nextLine(), fileWords.makeString(firstWord[5], parsersFirstWord), fileWords.makeString(secondWord[5], parsersSecondWord));
-			String receiptKind = getParameterValueFromXmlFileLine(inputStream.nextLine(), fileWords.makeString(firstWord[6], parsersFirstWord), fileWords.makeString(secondWord[6], parsersSecondWord));
-			String receiptAmount = getParameterValueFromXmlFileLine(inputStream.nextLine(), fileWords.makeString(firstWord[7], parsersFirstWord), fileWords.makeString(secondWord[7], parsersSecondWord));
-			String receiptCompany = getParameterValueFromXmlFileLine(inputStream.nextLine(), fileWords.makeString(firstWord[8], parsersFirstWord), fileWords.makeString(secondWord[8], parsersSecondWord));
-			String receiptCountry = getParameterValueFromXmlFileLine(inputStream.nextLine(), fileWords.makeString(firstWord[9], parsersFirstWord), fileWords.makeString(secondWord[9], parsersSecondWord));
-			String receiptCity = getParameterValueFromXmlFileLine(inputStream.nextLine(), fileWords.makeString(firstWord[10], parsersFirstWord), fileWords.makeString(secondWord[10], parsersSecondWord));
-			String receiptStreet = getParameterValueFromXmlFileLine(inputStream.nextLine(), fileWords.makeString(firstWord[11], parsersFirstWord), fileWords.makeString(secondWord[11], parsersSecondWord));
-			String receiptNumber = getParameterValueFromXmlFileLine(inputStream.nextLine(),  fileWords.makeString(firstWord[12], parsersFirstWord), fileWords.makeString(secondWord[12], parsersSecondWord));
+			String receiptID = fileWords.loadDataString(4,  fileLine);
+			String receiptDate = fileWords.loadDataString(5,  inputStream.nextLine());
+			String receiptKind = fileWords.loadDataString(6,  inputStream.nextLine());
+			String receiptAmount = fileWords.loadDataString(7,  inputStream.nextLine());
+			String receiptCompany = fileWords.loadDataString(8,  inputStream.nextLine());
+			String receiptCountry = fileWords.loadDataString(9,  inputStream.nextLine());
+			String receiptCity = fileWords.loadDataString(10,  inputStream.nextLine());
+			String receiptStreet = fileWords.loadDataString(11,  inputStream.nextLine());
+			String receiptNumber = fileWords.loadDataString(12,  inputStream.nextLine());
 			Receipt newReceipt = new Receipt(receiptKind, receiptID, receiptDate, receiptAmount, receiptCompany, receiptCountry, receiptCity, receiptStreet, receiptNumber);
 			
-			newTaxpayer.addReceiptToList(newReceipt);
+			taxpayer.addReceiptToList(newReceipt);
 		}
-		
-		Database.getDatabase().addTaxpayerToList(newTaxpayer);
 	}
-	
 
+	
 	private Scanner openFile(String filePath) {
 		Scanner inputStream = null;
 		try{
@@ -89,7 +100,4 @@ public class InputSystem {
 		}
 	}
 	
-	private String getParameterValueFromXmlFileLine(String fileLine, String parameterStartField, String parameterEndField){
-		return fileLine.substring(parameterStartField.length(), fileLine.length()-parameterEndField.length());
-	}
 }

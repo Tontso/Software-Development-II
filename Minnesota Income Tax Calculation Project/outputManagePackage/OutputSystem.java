@@ -19,6 +19,7 @@ public class OutputSystem {
 	
 	}
 	
+	
 	public static OutputSystem getOutputSystem() {
 		if(outputSystem == null) {
 			outputSystem = new OutputSystem();
@@ -28,41 +29,47 @@ public class OutputSystem {
 	
 
 	public void saveUpdatedTaxpayerTxtInputFile(String filePath, int taxpayerIndex, FileWords fileWords){
-		String[] parsersFirstWord = fileWords.getFirstWordParsers();
-		String[] parsersSecondWord = fileWords.getSecondParsers();
-		String[] secondWord = fileWords.getSecondWord(); 
-		String[] firstWord = fileWords.getFirstWord();
 		
 		PrintWriter outputStream = openFile(filePath);
 		
 		Taxpayer taxpayer = Database.getDatabase().getTaxpayerFromArrayList(taxpayerIndex);
-		outputStream.println(fileWords.makeString(firstWord[0], parsersFirstWord)+taxpayer.getName()+fileWords.makeString(secondWord[0],parsersSecondWord));
-		outputStream.println(fileWords.makeString(firstWord[1], parsersFirstWord)+taxpayer.getAFM()+fileWords.makeString(secondWord[1],parsersSecondWord));
-		outputStream.println(fileWords.makeString(firstWord[2], parsersFirstWord)+taxpayer.getFamilyStatus().getFamilyStatus()+fileWords.makeString(secondWord[2],parsersSecondWord));
-		outputStream.println(fileWords.makeString(firstWord[3], parsersFirstWord)+taxpayer.getIncome()+fileWords.makeString(secondWord[3],parsersSecondWord));
+		saveUpdatedTaxpayerData(fileWords, outputStream, taxpayer);
+		saveUpdatedTaxpayersReceiptsData(fileWords, outputStream, taxpayer);
 		
+		outputStream.close();
+	}
+	
+	
+	private void saveUpdatedTaxpayerData(FileWords fileWords, PrintWriter outputStream, Taxpayer taxpayer) {
+		outputStream.println(fileWords.makeUpdateString(0, taxpayer.getName()));
+		outputStream.println(fileWords.makeUpdateString(1, taxpayer.getAFM()));
+		outputStream.println(fileWords.makeUpdateString(2, taxpayer.getFamilyStatus().getFamilyStatus()));
+		outputStream.println(fileWords.makeUpdateString(3, taxpayer.getIncome()+""));
+		
+	}
+	
+	
+	private void saveUpdatedTaxpayersReceiptsData(FileWords fileWords, PrintWriter outputStream, Taxpayer taxpayer) {
 		if (taxpayer.getReceiptsArrayList().size() > 0){
 			outputStream.println();
-			outputStream.println(firstWord[13]);
+			outputStream.println(fileWords.getFirstWord()[13]);
 			outputStream.println();
 			
 			for (Receipt receipt : taxpayer.getReceiptsArrayList()){
-				outputStream.println(fileWords.makeString(firstWord[4], parsersFirstWord)+receipt.getId()+fileWords.makeString(secondWord[4],parsersSecondWord));
-				outputStream.println(fileWords.makeString(firstWord[5], parsersFirstWord)+receipt.getDate()+fileWords.makeString(secondWord[5],parsersSecondWord));
-				outputStream.println(fileWords.makeString(firstWord[6], parsersFirstWord)+receipt.getKind()+fileWords.makeString(secondWord[6],parsersSecondWord));
-				outputStream.println(fileWords.makeString(firstWord[7], parsersFirstWord)+receipt.getAmount()+fileWords.makeString(secondWord[7],parsersSecondWord));
-				outputStream.println(fileWords.makeString(firstWord[8], parsersFirstWord)+receipt.getCompany().getName()+fileWords.makeString(secondWord[8],parsersSecondWord));
-				outputStream.println(fileWords.makeString(firstWord[9], parsersFirstWord)+receipt.getCompany().getCountry()+fileWords.makeString(secondWord[9],parsersSecondWord));
-				outputStream.println(fileWords.makeString(firstWord[10], parsersFirstWord)+receipt.getCompany().getCity()+fileWords.makeString(secondWord[10],parsersSecondWord));
-				outputStream.println(fileWords.makeString(firstWord[11], parsersFirstWord)+receipt.getCompany().getStreet()+fileWords.makeString(secondWord[11],parsersSecondWord));
-				outputStream.println(fileWords.makeString(firstWord[12], parsersFirstWord)+receipt.getCompany().getNumber()+fileWords.makeString(secondWord[12],parsersSecondWord));			
+				outputStream.println(fileWords.makeUpdateString(4, receipt.getId()));
+				outputStream.println(fileWords.makeUpdateString(5, receipt.getDate()));
+				outputStream.println(fileWords.makeUpdateString(6, receipt.getKind()));
+				outputStream.println(fileWords.makeUpdateString(7, receipt.getAmount()+""));
+				outputStream.println(fileWords.makeUpdateString(8, receipt.getCompany().getName()));
+				outputStream.println(fileWords.makeUpdateString(9, receipt.getCompany().getCountry()));
+				outputStream.println(fileWords.makeUpdateString(10, receipt.getCompany().getCity()));
+				outputStream.println(fileWords.makeUpdateString(11, receipt.getCompany().getStreet()));
+				outputStream.println(fileWords.makeUpdateString(12, receipt.getCompany().getNumber()));			
 				outputStream.println();
 			}
 			
-			outputStream.println(firstWord[14]);
+			outputStream.println(fileWords.getFirstWord()[14]);
 		}
-		
-		outputStream.close();
 	}
 	
 	
@@ -77,7 +84,6 @@ public class OutputSystem {
 	}
 	
 
-	
 	public void saveTaxpayerInfoToLogFile(String folderSavePath, int taxpayerIndex, FileWords fileWords){
 		
 		
@@ -107,14 +113,5 @@ public class OutputSystem {
 		JOptionPane.showMessageDialog(null, "Η αποθήκευση ολοκληρώθηκε", "Μήνυμα", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
-	private PrintWriter openPrintWriter(String filepath) {
-		PrintWriter outputStream = null;
-		try	{
-			outputStream = new PrintWriter(new FileOutputStream(filepath));
-		}catch(FileNotFoundException e){
-			System.out.println("Problem opening: "+filepath);
-		}
-		return outputStream;
-	}
 	
 }
