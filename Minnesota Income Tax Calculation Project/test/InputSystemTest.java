@@ -24,7 +24,6 @@ class InputSystemTest {
 	@Order(1)
 	void testAddTaxpayersDataFromFilesIntoDatabaseForTxt() {
 		
-		InputSystem inputSystem = InputSystem.getInputSystem();
 		
 		List<String> myTestList = new ArrayList<>();
 		myTestList.add("130456093_INFO.txt");

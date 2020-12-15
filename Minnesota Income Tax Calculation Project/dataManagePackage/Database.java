@@ -13,8 +13,8 @@ public class Database {
 	
 	private static Database databaseInstance = null;
 	
-	private static String taxpayersInfoFilesPath;
-	private static ArrayList<Taxpayer> taxpayersArrayList = new ArrayList<Taxpayer>();
+	private  String taxpayersInfoFilesPath;
+	private  ArrayList<Taxpayer> taxpayersArrayList = new ArrayList<Taxpayer>();
 	
 	
 	private Database() {
@@ -33,34 +33,42 @@ public class Database {
 		this.taxpayersInfoFilesPath = taxpayersInfoFilesPath;
 	}
 	
+	
 	public String getTaxpayersInfoFilesPath(){
 		return taxpayersInfoFilesPath;
 	}
+	
 	
 	public void proccessTaxpayersDataFromFilesIntoDatabase(String afmInfoFilesFolderPath, List<String> taxpayersAfmInfoFiles){
 		InputSystem.getInputSystem().addTaxpayersDataFromFilesIntoDatabase(afmInfoFilesFolderPath, taxpayersAfmInfoFiles);
 	}
 	
+	
 	public void addTaxpayerToList(Taxpayer taxpayer){
 		taxpayersArrayList.add(taxpayer);
 	}
+	
 	
 	public int getTaxpayersArrayListSize(){
 		return taxpayersArrayList.size();
 	}
 	
+	
 	public Taxpayer getTaxpayerFromArrayList(int index){
 		return taxpayersArrayList.get(index);
 	}
+	
 	
 	public void removeTaxpayerFromArrayList(int index){
 		taxpayersArrayList.remove(index);
 	}
 	
+	
 	public String getTaxpayerNameAfmValuesPairList(int index){
 		Taxpayer taxpayer = taxpayersArrayList.get(index);
 		return taxpayer.getName() + " | " + taxpayer.getAFM();
 	}
+	
 	
 	public String[] getTaxpayersNameAfmValuesPairList(){
 		String[] taxpayersNameAfmValuesPairList = new String[taxpayersArrayList.size()];
@@ -72,6 +80,7 @@ public class Database {
 		
 		return taxpayersNameAfmValuesPairList;
 	}
+	
 	
 	public void updateTaxpayerInputFile(int index){
 		File taxpayersInfoFilesPathFileObject = new File(taxpayersInfoFilesPath);

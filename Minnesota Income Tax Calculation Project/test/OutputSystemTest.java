@@ -8,10 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartFrame;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
@@ -324,9 +320,6 @@ class OutputSystemTest {
 		taxAnalysisBarChartDataset.setValue(taxVariationAmount, "Tax", taxVariationType);
 		taxAnalysisBarChartDataset.setValue(taxpayer.getTotalTax(), "Tax", "Total Tax");
 
-		JFreeChart taxAnalysisJFreeChart = ChartFactory.createBarChart("Tax Analysis Bar Chart", "",  "Tax Analysis in $", taxAnalysisBarChartDataset, PlotOrientation.VERTICAL, true, true, false);
-
-		ChartFrame receiptPieChartFrame = new ChartFrame(database.getTaxpayerNameAfmValuesPairList(0), taxAnalysisJFreeChart);
 		
 		BarChart.getBarChart().createTaxpayerTaxAnalysisBarJFreeChart(0);
 		
