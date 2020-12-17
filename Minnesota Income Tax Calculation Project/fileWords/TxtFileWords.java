@@ -43,11 +43,6 @@ public class TxtFileWords implements FileWords{
 		return fileLine.substring(parameterStartField.length(), fileLine.length()-parameterEndField.length());
 	}
 	
-	
-	@Override
-	public String makeString(String value, String[] parsers) {
-		return parsers[0]+value+parsers[1];
-	}
 
 	
 	@Override

@@ -45,12 +45,6 @@ public class XmlFileWords implements FileWords{
 
 	
 	@Override
-	public String makeString(String value, String[] parsers) {
-		return parsers[0]+value+parsers[1];
-	}
-
-	
-	@Override
 	public String makeSaveString(int position, String value) {
 		return firstWordParser[0]+saveTaxpayerWords[position]+firstWordParser[1]+value+secondWordParser[0]+saveTaxpayerWords[position]+secondWordParser[1];
 	}
