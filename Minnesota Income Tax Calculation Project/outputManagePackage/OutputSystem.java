@@ -52,7 +52,7 @@ public class OutputSystem {
 	private void saveUpdatedTaxpayersReceiptsData(FileWords fileWords, PrintWriter outputStream, Taxpayer taxpayer) {
 		if (taxpayer.getReceiptsArrayList().size() > 0){
 			outputStream.println();
-			outputStream.println(fileWords.getFirstWord()[13]);
+			outputStream.println(fileWords.getFirstWord().get(13));
 			outputStream.println();
 			
 			for (Receipt receipt : taxpayer.getReceiptsArrayList()){
@@ -68,7 +68,7 @@ public class OutputSystem {
 				outputStream.println();
 			}
 			
-			outputStream.println(fileWords.getFirstWord()[14]);
+			outputStream.println(fileWords.getFirstWord().get(14));
 		}
 	}
 	

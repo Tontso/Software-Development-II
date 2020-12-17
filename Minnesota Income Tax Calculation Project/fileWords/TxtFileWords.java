@@ -1,69 +1,36 @@
 package fileWords;
 
-public class TxtFileWords implements FileWords{
+import java.util.ArrayList;
+import java.util.List;
+
+public class TxtFileWords extends FileWords{
 	
 	private static TxtFileWords txtFileWords = null;
 	
-	private String[] firstWord = {"Name", "AFM", "Status", "Income", "Receipt ID", "Date", "Kind", "Amount", "Company", "Country", "City", "Street", "Number", "Receipts:", ""};
-	private String[] secondWord = {"", "", "", "", "", "", "", "", "", "", "", "", ""};
-	private String[] firstWordParsers = {"", ": "};
-	private String[] secondWordParsers = {"", ""};
-	private String[] saveTaxpayerWords = {"Name", "AFM", "Income", "Basic Tax", "Tax Increase", "Tax Decrease", "Total Tax", "Total Receipts Amount", "Entertainment", "Basic", "Travel", "Health", "Other"};
-	private String saveAs = "_LOG.txt";
 	
 	
 	private TxtFileWords() {
-		
+		setValues();
 	}
 	
-	
+
 	public static TxtFileWords getTxtFileWords() {
 		if(txtFileWords == null) {
 			txtFileWords = new TxtFileWords();
 		}
 		return txtFileWords;
 	}
-
 	
-	@Override
-	public String[] getFirstWord() {
-		return firstWord;
+	
+	private void setValues() {
+		firstWord = new ArrayList<>(List.of("Name", "AFM", "Status", "Income", "Receipt ID", "Date", "Kind", "Amount", "Company", "Country", "City", "Street", "Number", "Receipts:", ""));
+		secondWord = new ArrayList<>(List.of("", "", "", "", "", "", "", "", "", "", "", "", ""));
+		firstWordParsers = new ArrayList<>(List.of("", ": "));
+		secondWordParsers = new ArrayList<>(List.of("", ""));
+		saveTaxpayerWordFirst = new ArrayList<>(List.of("Name", "AFM", "Income", "Basic Tax", "Tax Increase", "Tax Decrease", "Total Tax", "Total Receipts Amount", "Entertainment", "Basic", "Travel", "Health", "Other"));
+		saveTaxpayerWordSecond = new ArrayList<>(List.of("", "", "", "", "", "", "", "", "", "", "", "", ""));
+		saveAs = "_LOG.txt";
+		
 	}
 
-	
-	@Override
-	public String loadDataString(int position, String fileLine) {
-		String firstWordData = firstWordParsers[0]+firstWord[position]+firstWordParsers[1];
-		String secondWordData = secondWordParsers[0]+secondWord[position]+secondWordParsers[1];
-		return getValue(fileLine, firstWordData, secondWordData);
-	}
-	
-	
-	private String getValue(String fileLine, String parameterStartField, String parameterEndField) {
-		return fileLine.substring(parameterStartField.length(), fileLine.length()-parameterEndField.length());
-	}
-	
-
-	
-	@Override
-	public String makeSaveString(int position, String value) {
-		return firstWordParsers[0]+saveTaxpayerWords[position]+firstWordParsers[1]+value+secondWordParsers[0]+secondWord[position]+secondWordParsers[1];
-	}
-	
-	
-	@Override
-	public String makeUpdateString(int position, String value) {
-		return firstWordParsers[0]+firstWord[position]+firstWordParsers[1]+value+secondWordParsers[0]+secondWord[position]+secondWordParsers[1];
-	}
-
-
-	@Override
-	public String getSaveAs() {
-		return saveAs;
-	}
-
-	
-	
-
-	
 }
