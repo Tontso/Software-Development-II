@@ -1,8 +1,8 @@
-package fileWords;
+package file_words;
 
 import java.util.List;
 
-public abstract class FileWords {
+public class FileWords {
 
 	protected List<String> firstWord;
 	protected List<String> secondWord ;

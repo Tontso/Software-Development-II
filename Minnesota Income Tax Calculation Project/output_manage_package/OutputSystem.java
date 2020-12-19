@@ -1,14 +1,14 @@
-package outputManagePackage;
+package output_manage_package;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 
 import javax.swing.JOptionPane;
 
-import dataManagePackage.Database;
-import dataManagePackage.Taxpayer;
-import dataManagePackage.Receipt.Receipt;
-import fileWords.FileWords;
+import data_manage_package.Database;
+import data_manage_package.Taxpayer;
+import data_manage_package.receipt.Receipt;
+import file_words.FileWords;
 
 public class OutputSystem {
 	
@@ -28,7 +28,7 @@ public class OutputSystem {
 	}
 	
 
-	public void saveUpdatedTaxpayerTxtInputFile(String filePath, int taxpayerIndex, FileWords fileWords){
+	public void saveUpdatedTaxpayerInputFile(String filePath, int taxpayerIndex, FileWords fileWords){
 		
 		PrintWriter outputStream = openFile(filePath);
 		

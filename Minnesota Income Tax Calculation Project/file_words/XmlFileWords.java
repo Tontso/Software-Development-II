@@ -1,4 +1,4 @@
-package fileWords;
+package file_words;
 
 import java.util.ArrayList;
 import java.util.List;

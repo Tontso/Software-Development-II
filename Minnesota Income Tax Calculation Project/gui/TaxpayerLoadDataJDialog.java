@@ -16,7 +16,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
-import dataManagePackage.Database;
+import data_manage_package.Database;
 
 public class TaxpayerLoadDataJDialog extends JDialog {
 	

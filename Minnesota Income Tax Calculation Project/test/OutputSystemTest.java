@@ -15,15 +15,15 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import dataManagePackage.Database;
-import dataManagePackage.Taxpayer;
-import dataManagePackage.Receipt.Receipt;
-import fileWords.TxtFileWords;
-import fileWords.XmlFileWords;
-import inputManagePackage.InputSystem;
-import outputManagePackage.BarChart;
-import outputManagePackage.OutputSystem;
-import outputManagePackage.PieChart;
+import data_manage_package.Database;
+import data_manage_package.Taxpayer;
+import data_manage_package.receipt.Receipt;
+import file_words.TxtFileWords;
+import file_words.XmlFileWords;
+import input_manage_package.InputSystem;
+import output_manage_package.BarChart;
+import output_manage_package.OutputSystem;
+import output_manage_package.PieChart;
 
 
 @TestMethodOrder(OrderAnnotation.class)
@@ -45,7 +45,7 @@ class OutputSystemTest {
 		database.getTaxpayerFromArrayList(0).removeReceiptFromList(4);
 		
 
-		OutputSystem.getOutputSystem().saveUpdatedTaxpayerTxtInputFile("test//testsOutputFiles//130456093_INFO.txt", 0, TxtFileWords.getTxtFileWords());
+		OutputSystem.getOutputSystem().saveUpdatedTaxpayerInputFile("test//testsOutputFiles//130456093_INFO.txt", 0, TxtFileWords.getTxtFileWords());
 		
 		Scanner inputStream = null;
 		try	{
@@ -105,7 +105,7 @@ class OutputSystemTest {
 		
 		//RESET TEXTFILE FOR NEXT TESTS
 		database.getTaxpayerFromArrayList(0).addReceiptToList(testReceipt5);
-		OutputSystem.getOutputSystem().saveUpdatedTaxpayerTxtInputFile("test//testsOutputFiles//130456093_INFO.txt", 0,TxtFileWords.getTxtFileWords());
+		OutputSystem.getOutputSystem().saveUpdatedTaxpayerInputFile("test//testsOutputFiles//130456093_INFO.txt", 0,TxtFileWords.getTxtFileWords());
 		
 		database.removeTaxpayerFromArrayList(0);
 		
@@ -126,7 +126,7 @@ class OutputSystemTest {
 		
 		InputSystem.getInputSystem().addTaxpayersDataFromFilesIntoDatabase("test/testsOutputFiles", myTestList);
 		database.getTaxpayerFromArrayList(0).removeReceiptFromList(2);
-		OutputSystem.getOutputSystem().saveUpdatedTaxpayerTxtInputFile("test//testsOutputFiles//130456094_INFO.xml", 0, XmlFileWords.getXmlFileWords());
+		OutputSystem.getOutputSystem().saveUpdatedTaxpayerInputFile("test//testsOutputFiles//130456094_INFO.xml", 0, XmlFileWords.getXmlFileWords());
 		
 		Scanner inputStream = null;
 		try	{
@@ -165,7 +165,7 @@ class OutputSystemTest {
 		
 		//RESET TEXTFILE FOR NEXT TESTS
 		database.getTaxpayerFromArrayList(0).addReceiptToList(testReceipt3);
-		OutputSystem.getOutputSystem().saveUpdatedTaxpayerTxtInputFile("test//testsOutputFiles//130456094_INFO.xml", 0,XmlFileWords.getXmlFileWords());
+		OutputSystem.getOutputSystem().saveUpdatedTaxpayerInputFile("test//testsOutputFiles//130456094_INFO.xml", 0,XmlFileWords.getXmlFileWords());
 		
 		database.removeTaxpayerFromArrayList(0);
 		

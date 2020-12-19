@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
-import dataManagePackage.Database;
+import data_manage_package.Database;
 
 public class MainJFrameWindow {
 

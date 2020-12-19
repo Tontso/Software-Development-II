@@ -16,8 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import dataManagePackage.Database;
-import dataManagePackage.Receipt.Receipt;
+import data_manage_package.Database;
+import data_manage_package.receipt.Receipt;
 
 public class InsertNewReceiptJDialog extends JDialog {
 

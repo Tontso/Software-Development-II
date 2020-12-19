@@ -1,15 +1,15 @@
-package inputManagePackage;
+package input_manage_package;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Scanner;
 
-import dataManagePackage.Database;
-import dataManagePackage.Taxpayer;
-import dataManagePackage.Receipt.Receipt;
-import fileWords.FileWords;
-import fileWords.TxtFileWords;
-import fileWords.XmlFileWords;
+import data_manage_package.Database;
+import data_manage_package.Taxpayer;
+import data_manage_package.receipt.Receipt;
+import file_words.FileWords;
+import file_words.TxtFileWords;
+import file_words.XmlFileWords;
 
 public class InputSystem {
 	

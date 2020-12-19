@@ -10,10 +10,10 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import dataManagePackage.Database;
-import dataManagePackage.Taxpayer;
-import dataManagePackage.Receipt.Receipt;
-import inputManagePackage.InputSystem;
+import data_manage_package.Database;
+import data_manage_package.Taxpayer;
+import data_manage_package.receipt.Receipt;
+import input_manage_package.InputSystem;
 
 @TestMethodOrder(OrderAnnotation.class)
 class InputSystemTest {

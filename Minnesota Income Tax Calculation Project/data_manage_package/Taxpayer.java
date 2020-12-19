@@ -1,8 +1,8 @@
-package dataManagePackage;
+package data_manage_package;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
-import dataManagePackage.Receipt.Receipt;
+import data_manage_package.receipt.Receipt;
 
 
 public class Taxpayer {

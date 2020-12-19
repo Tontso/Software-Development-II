@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import dataManagePackage.Taxpayer;
-import dataManagePackage.Receipt.Receipt;
+import data_manage_package.Taxpayer;
+import data_manage_package.receipt.Receipt;
 
 @TestMethodOrder(OrderAnnotation.class)
 class TaxpayerTest {

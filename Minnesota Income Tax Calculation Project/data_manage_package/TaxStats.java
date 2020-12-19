@@ -1,4 +1,4 @@
-package dataManagePackage;
+package data_manage_package;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,13 +1,13 @@
-package dataManagePackage;
+package data_manage_package;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.List;
 
-import fileWords.TxtFileWords;
-import fileWords.XmlFileWords;
-import inputManagePackage.InputSystem;
-import outputManagePackage.OutputSystem;
+import file_words.TxtFileWords;
+import file_words.XmlFileWords;
+import input_manage_package.InputSystem;
+import output_manage_package.OutputSystem;
 
 public class Database {
 	
@@ -94,10 +94,10 @@ public class Database {
 			if (!file.getName().contains(taxpayersArrayList.get(index).getAFM())) continue;
 			
 			if (file.getName().toLowerCase().endsWith(".txt")){
-				OutputSystem.getOutputSystem().saveUpdatedTaxpayerTxtInputFile(file.getAbsolutePath(), index, TxtFileWords.getTxtFileWords());
+				OutputSystem.getOutputSystem().saveUpdatedTaxpayerInputFile(file.getAbsolutePath(), index, TxtFileWords.getTxtFileWords());
 			}
 			if (file.getName().toLowerCase().endsWith(".xml")){
-				OutputSystem.getOutputSystem().saveUpdatedTaxpayerTxtInputFile(file.getAbsolutePath(), index, XmlFileWords.getXmlFileWords());
+				OutputSystem.getOutputSystem().saveUpdatedTaxpayerInputFile(file.getAbsolutePath(), index, XmlFileWords.getXmlFileWords());
 			}
 			break;
 		}

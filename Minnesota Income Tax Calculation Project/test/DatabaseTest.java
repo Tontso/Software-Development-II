@@ -4,12 +4,13 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+
+import data_manage_package.Database;
+import data_manage_package.Taxpayer;
+
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-
-import dataManagePackage.Database;
-import dataManagePackage.Taxpayer;
 
 @TestMethodOrder(OrderAnnotation.class)
 class DatabaseTest {

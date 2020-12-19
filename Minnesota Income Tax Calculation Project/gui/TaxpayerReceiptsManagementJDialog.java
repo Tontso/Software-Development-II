@@ -14,7 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 
-import dataManagePackage.Database;
+import data_manage_package.Database;
 
 public class TaxpayerReceiptsManagementJDialog extends JDialog {
 

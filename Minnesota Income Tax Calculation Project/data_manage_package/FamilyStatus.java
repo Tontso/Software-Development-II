@@ -1,4 +1,4 @@
-package dataManagePackage;
+package data_manage_package;
 
 public class FamilyStatus {
 

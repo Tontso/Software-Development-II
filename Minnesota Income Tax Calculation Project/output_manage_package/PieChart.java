@@ -1,4 +1,4 @@
-package outputManagePackage;
+package output_manage_package;
 
 import java.awt.Dialog.ModalExclusionType;
 import java.text.DecimalFormat;
@@ -11,8 +11,8 @@ import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
 import org.jfree.chart.plot.PiePlot;
 import org.jfree.data.general.DefaultPieDataset;
 
-import dataManagePackage.Database;
-import dataManagePackage.Taxpayer;
+import data_manage_package.Database;
+import data_manage_package.Taxpayer;
 
 public class PieChart {
 	

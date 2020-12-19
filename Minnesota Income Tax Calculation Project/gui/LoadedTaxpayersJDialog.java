@@ -17,12 +17,12 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 
-import dataManagePackage.Database;
-import fileWords.TxtFileWords;
-import fileWords.XmlFileWords;
-import outputManagePackage.BarChart;
-import outputManagePackage.OutputSystem;
-import outputManagePackage.PieChart;
+import data_manage_package.Database;
+import file_words.TxtFileWords;
+import file_words.XmlFileWords;
+import output_manage_package.BarChart;
+import output_manage_package.OutputSystem;
+import output_manage_package.PieChart;
 
 public class LoadedTaxpayersJDialog extends JDialog {
 

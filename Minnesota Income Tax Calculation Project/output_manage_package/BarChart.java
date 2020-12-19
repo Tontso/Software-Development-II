@@ -1,4 +1,4 @@
-package outputManagePackage;
+package output_manage_package;
 
 import java.awt.Dialog.ModalExclusionType;
 
@@ -8,8 +8,8 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-import dataManagePackage.Database;
-import dataManagePackage.Taxpayer;
+import data_manage_package.Database;
+import data_manage_package.Taxpayer;
 
 public class BarChart {
 	

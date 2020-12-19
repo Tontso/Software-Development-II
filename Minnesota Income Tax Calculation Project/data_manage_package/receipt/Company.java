@@ -1,4 +1,4 @@
-package dataManagePackage.Receipt;
+package data_manage_package.receipt;
 
 public class Company {
 	private String name;
